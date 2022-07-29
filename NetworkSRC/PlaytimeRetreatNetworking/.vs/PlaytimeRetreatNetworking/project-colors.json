@@ -1,0 +1,26 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "d88d6da4-c52e-4fd3-9da7-34efa38b7055": {
+      "ProjectGuid": "d88d6da4-c52e-4fd3-9da7-34efa38b7055",
+      "DisplayName": "MatchMakingServer",
+      "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "830b2061-e4af-4765-b73a-5319a0236284": {
+      "ProjectGuid": "830b2061-e4af-4765-b73a-5319a0236284",
+      "DisplayName": "PlayTimePackets",
+      "ColorIndex": 1
+    },
+    "67156f4b-6981-4a00-b64e-a3149c0c3a32": {
+      "ProjectGuid": "67156f4b-6981-4a00-b64e-a3149c0c3a32",
+      "DisplayName": "LobbyServer",
+      "ColorIndex": 2
+    }
+  },
+  "NextColorIndex": 3
+}
