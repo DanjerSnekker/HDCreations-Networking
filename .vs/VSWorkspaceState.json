@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\NetworkSRC",
+    "\\NetworkSRC\\PlaytimeRetreatNetworking",
+    "\\NetworkSRC\\PlaytimeRetreatNetworking\\LobbyServer",
+    "\\NetworkSRC\\PlaytimeRetreatNetworking\\MatchMakingServer"
+  ],
+  "SelectedNode": "\\NetworkSRC\\PlaytimeRetreatNetworking\\MatchMakingServer\\MatchMakingServer.csproj",
+  "PreviewInSolutionExplorer": false
+}

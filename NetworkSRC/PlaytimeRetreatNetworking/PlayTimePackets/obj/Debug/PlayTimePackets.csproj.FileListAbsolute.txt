@@ -4,3 +4,9 @@ C:\Users\user\Desktop\PlaytimeRetreat\NetworkSRC\PlaytimeRetreatNetworking\PlayT
 C:\Users\user\Desktop\PlaytimeRetreat\NetworkSRC\PlaytimeRetreatNetworking\PlayTimePackets\obj\Debug\PlayTimePackets.csproj.CoreCompileInputs.cache
 C:\Users\user\Desktop\PlaytimeRetreat\NetworkSRC\PlaytimeRetreatNetworking\PlayTimePackets\obj\Debug\PlayTimePackets.dll
 C:\Users\user\Desktop\PlaytimeRetreat\NetworkSRC\PlaytimeRetreatNetworking\PlayTimePackets\obj\Debug\PlayTimePackets.pdb
+C:\Users\user\HDCreations-Networking\NetworkSRC\PlaytimeRetreatNetworking\PlayTimePackets\bin\Debug\PlayTimePackets.dll
+C:\Users\user\HDCreations-Networking\NetworkSRC\PlaytimeRetreatNetworking\PlayTimePackets\bin\Debug\PlayTimePackets.pdb
+C:\Users\user\HDCreations-Networking\NetworkSRC\PlaytimeRetreatNetworking\PlayTimePackets\obj\Debug\PlayTimePackets.csproj.AssemblyReference.cache
+C:\Users\user\HDCreations-Networking\NetworkSRC\PlaytimeRetreatNetworking\PlayTimePackets\obj\Debug\PlayTimePackets.csproj.CoreCompileInputs.cache
+C:\Users\user\HDCreations-Networking\NetworkSRC\PlaytimeRetreatNetworking\PlayTimePackets\obj\Debug\PlayTimePackets.dll
+C:\Users\user\HDCreations-Networking\NetworkSRC\PlaytimeRetreatNetworking\PlayTimePackets\obj\Debug\PlayTimePackets.pdb

@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using System.Text;
 using PlayTimePackets;
 using System.Diagnostics;
+using MatchMakingServer;
 
 namespace MatchmakingServer
 {
@@ -32,7 +33,8 @@ namespace MatchmakingServer
             Console.WriteLine("Client Socket Listening On Port: " + 3000);
 
             List<Client> ClientSockets = new List<Client>();
-            List<Socket> LobbySockets = new List<Socket>();
+            List<Lobby> LobbySockets = new List<Lobby>();
+            List<Lobby> lobbyInformation = new List<Lobby>();
 
             List<string> LobbyNames = new List<string>();
             bool lobbyCreated = false;
@@ -68,17 +70,16 @@ namespace MatchmakingServer
                             case BasePacket.PacketType.CreateLobby:
                                 CreateLobbyPacket clp = (CreateLobbyPacket)new CreateLobbyPacket().DeSerialize(recievedBuffer);
                                 CreateLobby(clp.Name, ClientSockets[i].Player.ID);
-                                lobbyCreated = true;
                                 break;
 
                             //Check for Display Lobbies
                             case BasePacket.PacketType.DisplayLobby:
                                 DisplayLobbiesPacket dlp = (DisplayLobbiesPacket)new DisplayLobbiesPacket().DeSerialize(recievedBuffer);
                                 Console.WriteLine("Recieved Request To Show Lobbies");
-                                for (int j = 0; j < LobbyNames.Count; j++)
+                                for (int j = 0; j < lobbyInformation.Count; j++)
                                 {
-                                    Console.WriteLine("Server Sending " + LobbyNames[j]);
-                                    ClientSockets[i].Socket.Send(new LobbyNamesPacket(LobbyNames[j], ClientSockets[i].Player).Serialize());
+                                    Console.WriteLine("Server Sending " + lobbyInformation[j].Name);
+                                    ClientSockets[i].Socket.Send(new LobbyNamesPacket(LobbyNames, ClientSockets[i].Player).Serialize());
                                 }
                                 break;
 
@@ -98,7 +99,7 @@ namespace MatchmakingServer
                 //Lobby Connect
                 try
                 {
-                    LobbySockets.Add(LobbyListeningSocket.Accept());
+                    LobbySockets.Add(new Lobby(LobbyListeningSocket.Accept()));
                     Console.WriteLine("Lobby Created & Running");
                 }
                 catch (SocketException ex)
@@ -111,24 +112,27 @@ namespace MatchmakingServer
                 for (int i = 0; i < LobbySockets.Count; i++)
                 {
 
-                    byte[] recievedBuffer = new byte[LobbySockets[i].Available];
-                    if (LobbySockets[i].Available > 1)
+                    byte[] recievedBuffer = new byte[LobbySockets[i].Socket.Available];
+                    if (LobbySockets[i].Socket.Available > 1)
                     {
                         //check for lobbypacket(roomcode)
                         //check for lobblypacket(lobbyport)
                         // check for lobbypackey(close)
-                        LobbySockets[i].Receive(recievedBuffer);
+                        LobbySockets[i].Socket.Receive(recievedBuffer);
                         BasePacket pb = new BasePacket().DeSerialize(recievedBuffer);
                         switch (pb.Type)
                         {
                             case BasePacket.PacketType.Lobby:
                                 LobbyInformationPacket lp = (LobbyInformationPacket)new LobbyInformationPacket().DeSerialize(recievedBuffer);
                                 Console.WriteLine("creds recieved, grabbed: " + lp.Name + " with Lobby port: " + lp.LobbyPort + " RoomCode: " + lp.RoomCode);
+                                //lobbyInformation.Add(new Lobby())
+                                lobbyInformation.Add(new Lobby(LobbySockets[i].Socket, lp.Name, lp.LobbyPort , lp.RoomCode));
                                 LobbyNames.Add(lp.Name);
+
                                 
                                 //____ what was this for?
-                                Socket testingSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                                testingSocket.Connect(new IPEndPoint(IPAddress.Parse("127.0.0.1"), lp.LobbyPort));
+                                //Socket testingSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                                //testingSocket.Connect(new IPEndPoint(IPAddress.Parse("127.0.0.1"), lp.LobbyPort));
                                 //____
 
                                 for (int e = 0; e < ClientSockets.Count; e++)
