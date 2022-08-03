@@ -45,6 +45,8 @@
     <Compile Include="CreateLobbyPacket.cs" />
     <Compile Include="CreatePlayerPacket.cs" />
     <Compile Include="DisplayLobbiesPacket.cs" />
+    <Compile Include="JoinRequestPacket.cs" />
+    <Compile Include="KickRequestPacket.cs" />
     <Compile Include="LobbyInformationPacket.cs" />
     <Compile Include="LobbyNamesPacket.cs" />
     <Compile Include="MessagePacket.cs" />

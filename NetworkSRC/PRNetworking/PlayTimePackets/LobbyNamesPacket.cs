@@ -8,21 +8,22 @@ namespace PlayTimePackets
 {
     public class LobbyNamesPacket : BasePacket
     {
-        public List<string> LobbyNames;
+         public List<string> LobbyNames;
         //public string LobbyName;
+        //public int RoomCode;
         public Player Player;
 
         public LobbyNamesPacket()
         {
-            //LobbyName = "";
-            
+           // LobbyName = "";
         }
 
-        public LobbyNamesPacket(List<string> lobbyNames, Player player) :
+        public LobbyNamesPacket(List<string> lobbyNames/*string lobbyNames,int roomcodes*/,Player player) :
             base(PacketType.LobbyName, player)
         {
             LobbyNames = lobbyNames;
-            //LobbyName = lobbyNames;           
+            /*LobbyName = lobbyNames;
+            RoomCode = roomcodes;*/
         }
 
         public override byte[] Serialize()
@@ -52,7 +53,9 @@ namespace PlayTimePackets
             for (int i = 0; i < count; i++)
             {
                 LobbyNames.Add(br.ReadString());
-            }        
+            }
+            
+           // LobbyName = br.ReadString();
 
             return this;
         }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user\\HDCreations-Networking\\NetworkSRC\\PlaytimeRetreatNetworking\\LobbyServer\\LobbyServer.csproj": {}
+    "C:\\Users\\user\\HDCreations-Networking\\NetworkSRC\\PRNetworking\\LobbyServer\\LobbyServer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user\\HDCreations-Networking\\NetworkSRC\\PlaytimeRetreatNetworking\\LobbyServer\\LobbyServer.csproj": {
+    "C:\\Users\\user\\HDCreations-Networking\\NetworkSRC\\PRNetworking\\LobbyServer\\LobbyServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\HDCreations-Networking\\NetworkSRC\\PlaytimeRetreatNetworking\\LobbyServer\\LobbyServer.csproj",
+        "projectUniqueName": "C:\\Users\\user\\HDCreations-Networking\\NetworkSRC\\PRNetworking\\LobbyServer\\LobbyServer.csproj",
         "projectName": "LobbyServer",
-        "projectPath": "C:\\Users\\user\\HDCreations-Networking\\NetworkSRC\\PlaytimeRetreatNetworking\\LobbyServer\\LobbyServer.csproj",
+        "projectPath": "C:\\Users\\user\\HDCreations-Networking\\NetworkSRC\\PRNetworking\\LobbyServer\\LobbyServer.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\HDCreations-Networking\\NetworkSRC\\PlaytimeRetreatNetworking\\LobbyServer\\obj\\",
+        "outputPath": "C:\\Users\\user\\HDCreations-Networking\\NetworkSRC\\PRNetworking\\LobbyServer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,11 +28,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\user\\HDCreations-Networking\\NetworkSRC\\PlaytimeRetreatNetworking\\MatchMakingServer\\MatchMakingServer.csproj": {
-                "projectPath": "C:\\Users\\user\\HDCreations-Networking\\NetworkSRC\\PlaytimeRetreatNetworking\\MatchMakingServer\\MatchMakingServer.csproj"
+              "C:\\Users\\user\\HDCreations-Networking\\NetworkSRC\\PRNetworking\\MatchMakingServer\\MatchMakingServer.csproj": {
+                "projectPath": "C:\\Users\\user\\HDCreations-Networking\\NetworkSRC\\PRNetworking\\MatchMakingServer\\MatchMakingServer.csproj"
               },
-              "C:\\Users\\user\\HDCreations-Networking\\NetworkSRC\\PlaytimeRetreatNetworking\\PlayTimePackets\\PlayTimePackets.csproj": {
-                "projectPath": "C:\\Users\\user\\HDCreations-Networking\\NetworkSRC\\PlaytimeRetreatNetworking\\PlayTimePackets\\PlayTimePackets.csproj"
+              "C:\\Users\\user\\HDCreations-Networking\\NetworkSRC\\PRNetworking\\PlayTimePackets\\PlayTimePackets.csproj": {
+                "projectPath": "C:\\Users\\user\\HDCreations-Networking\\NetworkSRC\\PRNetworking\\PlayTimePackets\\PlayTimePackets.csproj"
               }
             }
           }
@@ -65,14 +65,14 @@
         }
       }
     },
-    "C:\\Users\\user\\HDCreations-Networking\\NetworkSRC\\PlaytimeRetreatNetworking\\MatchMakingServer\\MatchMakingServer.csproj": {
+    "C:\\Users\\user\\HDCreations-Networking\\NetworkSRC\\PRNetworking\\MatchMakingServer\\MatchMakingServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\HDCreations-Networking\\NetworkSRC\\PlaytimeRetreatNetworking\\MatchMakingServer\\MatchMakingServer.csproj",
+        "projectUniqueName": "C:\\Users\\user\\HDCreations-Networking\\NetworkSRC\\PRNetworking\\MatchMakingServer\\MatchMakingServer.csproj",
         "projectName": "MatchMakingServer",
-        "projectPath": "C:\\Users\\user\\HDCreations-Networking\\NetworkSRC\\PlaytimeRetreatNetworking\\MatchMakingServer\\MatchMakingServer.csproj",
+        "projectPath": "C:\\Users\\user\\HDCreations-Networking\\NetworkSRC\\PRNetworking\\MatchMakingServer\\MatchMakingServer.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\HDCreations-Networking\\NetworkSRC\\PlaytimeRetreatNetworking\\MatchMakingServer\\obj\\",
+        "outputPath": "C:\\Users\\user\\HDCreations-Networking\\NetworkSRC\\PRNetworking\\MatchMakingServer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -89,8 +89,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\user\\HDCreations-Networking\\NetworkSRC\\PlaytimeRetreatNetworking\\PlayTimePackets\\PlayTimePackets.csproj": {
-                "projectPath": "C:\\Users\\user\\HDCreations-Networking\\NetworkSRC\\PlaytimeRetreatNetworking\\PlayTimePackets\\PlayTimePackets.csproj"
+              "C:\\Users\\user\\HDCreations-Networking\\NetworkSRC\\PRNetworking\\PlayTimePackets\\PlayTimePackets.csproj": {
+                "projectPath": "C:\\Users\\user\\HDCreations-Networking\\NetworkSRC\\PRNetworking\\PlayTimePackets\\PlayTimePackets.csproj"
               }
             }
           }
@@ -123,11 +123,11 @@
         }
       }
     },
-    "C:\\Users\\user\\HDCreations-Networking\\NetworkSRC\\PlaytimeRetreatNetworking\\PlayTimePackets\\PlayTimePackets.csproj": {
+    "C:\\Users\\user\\HDCreations-Networking\\NetworkSRC\\PRNetworking\\PlayTimePackets\\PlayTimePackets.csproj": {
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\HDCreations-Networking\\NetworkSRC\\PlaytimeRetreatNetworking\\PlayTimePackets\\PlayTimePackets.csproj",
+        "projectUniqueName": "C:\\Users\\user\\HDCreations-Networking\\NetworkSRC\\PRNetworking\\PlayTimePackets\\PlayTimePackets.csproj",
         "projectName": "PlayTimePackets",
-        "projectPath": "C:\\Users\\user\\HDCreations-Networking\\NetworkSRC\\PlaytimeRetreatNetworking\\PlayTimePackets\\PlayTimePackets.csproj",
+        "projectPath": "C:\\Users\\user\\HDCreations-Networking\\NetworkSRC\\PRNetworking\\PlayTimePackets\\PlayTimePackets.csproj",
         "frameworks": {
           "net48": {
             "projectReferences": {}

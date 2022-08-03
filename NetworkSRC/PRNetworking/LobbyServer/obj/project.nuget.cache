@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XSUpzKFKD1SQNuNMLIK6kA8Jb2QiliQSwNLyM0Yz9MpXG01qru+e+WOzHXUIrrrineXXNPW3F9UlTUq42DSJpg==",
+  "dgSpecHash": "OPUp5kmx1jrYCM+Ccm8Riygvfb6DQLjx6PuU3WCTCMdfG7GOQjSMkMubAOnUjZ81kP/GL1qX1rEGx2BjIGd0Lg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\user\\HDCreations-Networking\\NetworkSRC\\PlaytimeRetreatNetworking\\LobbyServer\\LobbyServer.csproj",
+  "projectFilePath": "C:\\Users\\user\\HDCreations-Networking\\NetworkSRC\\PRNetworking\\LobbyServer\\LobbyServer.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

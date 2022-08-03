@@ -26,6 +26,8 @@ namespace PlayTimePackets
             DisplayLobby,
             CreatePlayer,
             LobbyName,
+            JoinRequest,
+            KickRequest,
         }
         public PacketType Type { get; private set; }
 
