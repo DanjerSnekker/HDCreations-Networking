@@ -26,6 +26,8 @@ namespace PlayTimePackets
             DisplayLobby,
             CreatePlayer,
             LobbyName,
+            JoinRequest,
+            KickRequest,
 
             Rigidbody,
             Instantiate,

@@ -11,8 +11,6 @@ namespace MatchmakingServer
 {
     public class MainServer
     {
-        //List<Socket> ClientSockets = new List<Socket>();
-        //List<Socket> LobbySockets = new List<Socket>();
         static int portOffset = 1;
 
         static void Main(string[] args)
@@ -23,28 +21,28 @@ namespace MatchmakingServer
             LobbyListeningSocket.Listen(20);
             LobbyListeningSocket.Blocking = false;
 
-            Console.WriteLine("Lobby Socket Listening On Port: " + 3300);
+            //Console.WriteLine("Lobby Socket Listening On Port: " + 3300);
 
             Socket ClientListeningSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             ClientListeningSocket.Bind(new IPEndPoint(IPAddress.Any, 3000));
-            ClientListeningSocket.Listen(2);
+            ClientListeningSocket.Listen(10);
             ClientListeningSocket.Blocking = false;
 
-            Console.WriteLine("Client Socket Listening On Port: " + 3000);
+            //Console.WriteLine("Client Socket Listening On Port: " + 3000);
 
             List<Client> ClientSockets = new List<Client>();
             List<Lobby> LobbySockets = new List<Lobby>();
-            List<Lobby> lobbyInformation = new List<Lobby>();
+            List<Lobby> LobbiesList = new List<Lobby>();
 
             List<string> LobbyNames = new List<string>();
-            bool lobbyCreated = false;
+            List<int> LobbyCodes = new List<int>();
+            //bool lobbyCreated = false;
 
             Console.WriteLine("waiting for connection");
 
 
             while (true)
             {
-                //Client Connect
                 try
                 {
                     ClientSockets.Add(new Client(ClientListeningSocket.Accept()));
@@ -59,40 +57,79 @@ namespace MatchmakingServer
                 //Client Packet Loop
                 for (int i = 0; i < ClientSockets.Count; i++)
                 {
-                    try
+                    if (ClientSockets[i].Socket.Available > 0)
                     {
-                        byte[] recievedBuffer = new byte[ClientSockets[i].Socket.Available];
-                        ClientSockets[i].Socket.Receive(recievedBuffer);
-                        BasePacket pb = new BasePacket().DeSerialize(recievedBuffer);
-                        switch (pb.Type)
+                        try
                         {
-                            //Check for create lobby
-                            case BasePacket.PacketType.CreateLobby:
-                                CreateLobbyPacket clp = (CreateLobbyPacket)new CreateLobbyPacket().DeSerialize(recievedBuffer);
-                                CreateLobby(clp.Name, ClientSockets[i].Player.ID);
-                                break;
+                            byte[] recievedBuffer = new byte[ClientSockets[i].Socket.Available];
+                            ClientSockets[i].Socket.Receive(recievedBuffer);
+                            BasePacket pb = new BasePacket().DeSerialize(recievedBuffer);
+                            switch (pb.Type)
+                            {
+                                //Check for create lobby
+                                case BasePacket.PacketType.CreateLobby:
+                                    CreateLobbyPacket clp = (CreateLobbyPacket)new CreateLobbyPacket().DeSerialize(recievedBuffer);
+                                    Random random = new Random();
+                                    CreateLobby(clp.Name, ClientSockets[i].Player.ID, random.Next(1000, 9999));
+                                    break;
 
-                            //Check for Display Lobbies
-                            case BasePacket.PacketType.DisplayLobby:
-                                DisplayLobbiesPacket dlp = (DisplayLobbiesPacket)new DisplayLobbiesPacket().DeSerialize(recievedBuffer);
-                                Console.WriteLine("Recieved Request To Show Lobbies");
-                                for (int j = 0; j < lobbyInformation.Count; j++)
-                                {
-                                    Console.WriteLine("Server Sending " + lobbyInformation[j].Name);
+                                //Check for Display Lobbies
+                                case BasePacket.PacketType.DisplayLobby:
+                                    DisplayLobbiesPacket dlp = (DisplayLobbiesPacket)new DisplayLobbiesPacket().DeSerialize(recievedBuffer);
+                                    //Console.WriteLine("Recieved Request To Show Lobbies");
+                                    //string lobbyname = string.Join(",", LobbyNames);
                                     ClientSockets[i].Socket.Send(new LobbyNamesPacket(LobbyNames, ClientSockets[i].Player).Serialize());
-                                }
-                                break;
+                                    Console.WriteLine("Showing Lobbies");
+                                    break;
 
-                            case BasePacket.PacketType.CreatePlayer:
-                                CreatePlayerPacket cpp = (CreatePlayerPacket)new CreatePlayerPacket().DeSerialize(recievedBuffer);
-                                Socket tempSocket = ClientSockets[i].Socket;
-                                ClientSockets[i] = new Client(tempSocket, new Player(cpp.Name, cpp.Id));
-                                break;
+                                    //create player packet
+                                case BasePacket.PacketType.CreatePlayer:
+                                    CreatePlayerPacket cpp = (CreatePlayerPacket)new CreatePlayerPacket().DeSerialize(recievedBuffer);
+                                    Socket tempSocket = ClientSockets[i].Socket;
+                                    ClientSockets[i] = new Client(tempSocket, new Player(cpp.Name, cpp.Id));
+                                    break;
+
+
+                                    //check for roomcode input
+                                case BasePacket.PacketType.JoinRequest:
+                                    JoinRequestPacket jrp = (JoinRequestPacket)new JoinRequestPacket().DeSerialize(recievedBuffer);
+                                   // Console.WriteLine("Recieved Join Lobby Request");
+                                    for (int j = 0; j < LobbiesList.Count; j++)
+                                    {
+                                        if (LobbiesList[j].Name == jrp.RoomName)
+                                        {
+                                            Console.WriteLine("Client count then:");
+                                            for (int e = 0; e < ClientSockets.Count; e++)
+                                            {
+                                                Console.WriteLine(ClientSockets[e]);
+                                            }
+                                            if (LobbiesList[j].Roomcode == jrp.RoomCode)
+                                            {
+                                                ClientSockets[i].Socket.Send(new LobbyInformationPacket(LobbiesList[j].Name, LobbiesList[j].Roomcode, LobbiesList[j].Port, null, Guid.Empty).Serialize());
+                                                ClientSockets.Remove(ClientSockets[i]);
+                                                ClientSockets.Sort();
+                                                Console.WriteLine("Client count now");
+                                                for (int e = 0; e < ClientSockets.Count; e++)
+                                                {
+                                                    Console.WriteLine(ClientSockets[e]);
+                                                }
+                                                // Console.WriteLine("RoomCode Found! Sending Player To " + LobbiesList[i].Name);
+                                            }
+                                            else
+                                            {
+                                                //this is in case the room code inputted was invalid
+                                                Console.WriteLine("Incorrect Room Code Inputted");
+                                                ClientSockets[i].Socket.Send(new JoinRequestPacket("null", 0, "The Room You Entered Is Invalid", ClientSockets[i].Player).Serialize());
+                                            }
+                                        }
+                                    }
+                                    break;
+                            }
                         }
-                    }
-                    catch (SocketException ex)
-                    {
-                        if (ex.SocketErrorCode != SocketError.WouldBlock) throw;
+                        catch (SocketException ex)
+                        {
+                            if (ex.SocketErrorCode != SocketError.WouldBlock) throw;
+                        }
                     }
                 }
 
@@ -100,7 +137,7 @@ namespace MatchmakingServer
                 try
                 {
                     LobbySockets.Add(new Lobby(LobbyListeningSocket.Accept()));
-                    Console.WriteLine("Lobby Created & Running");
+                    //Console.WriteLine("Lobby Created & Running");
                 }
                 catch (SocketException ex)
                 {
@@ -115,9 +152,7 @@ namespace MatchmakingServer
                     byte[] recievedBuffer = new byte[LobbySockets[i].Socket.Available];
                     if (LobbySockets[i].Socket.Available > 1)
                     {
-                        //check for lobbypacket(roomcode)
-                        //check for lobblypacket(lobbyport)
-                        // check for lobbypackey(close)
+                        //recieving credentials from lobby
                         LobbySockets[i].Socket.Receive(recievedBuffer);
                         BasePacket pb = new BasePacket().DeSerialize(recievedBuffer);
                         switch (pb.Type)
@@ -126,14 +161,9 @@ namespace MatchmakingServer
                                 LobbyInformationPacket lp = (LobbyInformationPacket)new LobbyInformationPacket().DeSerialize(recievedBuffer);
                                 Console.WriteLine("creds recieved, grabbed: " + lp.Name + " with Lobby port: " + lp.LobbyPort + " RoomCode: " + lp.RoomCode);
                                 //lobbyInformation.Add(new Lobby())
-                                lobbyInformation.Add(new Lobby(LobbySockets[i].Socket, lp.Name, lp.LobbyPort , lp.RoomCode));
+                                LobbiesList.Add(new Lobby(LobbySockets[i].Socket, lp.Name, lp.LobbyPort , lp.RoomCode));
                                 LobbyNames.Add(lp.Name);
-
-                                
-                                //____ what was this for?
-                                //Socket testingSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                                //testingSocket.Connect(new IPEndPoint(IPAddress.Parse("127.0.0.1"), lp.LobbyPort));
-                                //____
+                                LobbyCodes.Add(lp.RoomCode);
 
                                 for (int e = 0; e < ClientSockets.Count; e++)
                                 {
@@ -145,11 +175,8 @@ namespace MatchmakingServer
                                         ClientSockets.Remove(ClientSockets[e]);
                                     }
                                 }
-                                //JoinClientToLobby(ClientSockets[i], lp.Name, lp.RoomCode, lp.LobbyPort, lp.player);
                                 break;
-                            case BasePacket.PacketType.DisplayLobby:
-                                Console.WriteLine("Some Connected to a lobby");
-                                break;
+                                // check for lobbypackey(close)
                         }
                     }
                 }
@@ -157,25 +184,18 @@ namespace MatchmakingServer
 
         }
 
-        static void CreateLobby(string name, Guid clientId)
+        static void CreateLobby(string name, Guid clientId, int roomcode)
         {
-            //spawm lobby
-            //lobby.StartInfo.CreateNoWindow = false;
             Process lobby = new Process();
-            //lobby.StartInfo.UseShellExecute = true;
             lobby.StartInfo.FileName = "LobbyServer.exe";
-            lobby.StartInfo.Arguments = $"{name} {3300 + portOffset} {clientId}";
+            lobby.StartInfo.Arguments = $"{name} {3300 + portOffset} {clientId} {roomcode}";
             lobby.Start();
             portOffset++;
-
-            //wait until 
-            //Socket createSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            //AddLobbyToList(createSocket);
         }
 
         static void RemoveLobbyFromList(Socket socket)
         {
-            //LobbySockets.Remove(socket);
+
         }
 
         static void JoinClientToLobby(Client client, string name, int roomcode, int port)

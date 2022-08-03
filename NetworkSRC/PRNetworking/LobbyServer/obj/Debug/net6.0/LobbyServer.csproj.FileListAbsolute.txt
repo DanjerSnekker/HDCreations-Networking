@@ -44,26 +44,26 @@ C:\Users\user\HDCreations-Networking\NetworkSRC\PlaytimeRetreatNetworking\LobbyS
 C:\Users\user\HDCreations-Networking\NetworkSRC\PlaytimeRetreatNetworking\LobbyServer\obj\Debug\net6.0\ref\LobbyServer.dll
 C:\Users\user\HDCreations-Networking\NetworkSRC\PlaytimeRetreatNetworking\LobbyServer\obj\Debug\net6.0\LobbyServer.pdb
 C:\Users\user\HDCreations-Networking\NetworkSRC\PlaytimeRetreatNetworking\LobbyServer\obj\Debug\net6.0\LobbyServer.genruntimeconfig.cache
-C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\LobbyServer\bin\Debug\net6.0\MatchMakingServer.deps.json
-C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\LobbyServer\bin\Debug\net6.0\MatchMakingServer.runtimeconfig.json
-C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\LobbyServer\bin\Debug\net6.0\MatchMakingServer.exe
-C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\LobbyServer\bin\Debug\net6.0\LobbyServer.exe
-C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\LobbyServer\bin\Debug\net6.0\LobbyServer.deps.json
-C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\LobbyServer\bin\Debug\net6.0\LobbyServer.runtimeconfig.json
-C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\LobbyServer\bin\Debug\net6.0\LobbyServer.dll
-C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\LobbyServer\bin\Debug\net6.0\LobbyServer.pdb
-C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\LobbyServer\bin\Debug\net6.0\MatchMakingServer.dll
-C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\LobbyServer\bin\Debug\net6.0\PlayTimePackets.dll
-C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\LobbyServer\bin\Debug\net6.0\MatchMakingServer.pdb
-C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\LobbyServer\bin\Debug\net6.0\PlayTimePackets.pdb
-C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\LobbyServer\obj\Debug\net6.0\LobbyServer.csproj.AssemblyReference.cache
-C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\LobbyServer\obj\Debug\net6.0\LobbyServer.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\LobbyServer\obj\Debug\net6.0\LobbyServer.AssemblyInfoInputs.cache
-C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\LobbyServer\obj\Debug\net6.0\LobbyServer.AssemblyInfo.cs
-C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\LobbyServer\obj\Debug\net6.0\LobbyServer.csproj.CoreCompileInputs.cache
-C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\LobbyServer\obj\Debug\net6.0\LobbyServer.csproj.CopyComplete
-C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\LobbyServer\obj\Debug\net6.0\LobbyServer.dll
-C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\LobbyServer\obj\Debug\net6.0\refint\LobbyServer.dll
-C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\LobbyServer\obj\Debug\net6.0\LobbyServer.pdb
-C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\LobbyServer\obj\Debug\net6.0\LobbyServer.genruntimeconfig.cache
-C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\LobbyServer\obj\Debug\net6.0\ref\LobbyServer.dll
+C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\LobbyServer\bin\Debug\net6.0\MatchMakingServer.deps.json
+C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\LobbyServer\bin\Debug\net6.0\MatchMakingServer.runtimeconfig.json
+C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\LobbyServer\bin\Debug\net6.0\MatchMakingServer.exe
+C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\LobbyServer\bin\Debug\net6.0\LobbyServer.exe
+C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\LobbyServer\bin\Debug\net6.0\LobbyServer.deps.json
+C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\LobbyServer\bin\Debug\net6.0\LobbyServer.runtimeconfig.json
+C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\LobbyServer\bin\Debug\net6.0\LobbyServer.dll
+C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\LobbyServer\bin\Debug\net6.0\ref\LobbyServer.dll
+C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\LobbyServer\bin\Debug\net6.0\LobbyServer.pdb
+C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\LobbyServer\bin\Debug\net6.0\MatchMakingServer.dll
+C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\LobbyServer\bin\Debug\net6.0\PlayTimePackets.dll
+C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\LobbyServer\bin\Debug\net6.0\MatchMakingServer.pdb
+C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\LobbyServer\bin\Debug\net6.0\PlayTimePackets.pdb
+C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\LobbyServer\obj\Debug\net6.0\LobbyServer.csproj.AssemblyReference.cache
+C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\LobbyServer\obj\Debug\net6.0\LobbyServer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\LobbyServer\obj\Debug\net6.0\LobbyServer.AssemblyInfoInputs.cache
+C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\LobbyServer\obj\Debug\net6.0\LobbyServer.AssemblyInfo.cs
+C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\LobbyServer\obj\Debug\net6.0\LobbyServer.csproj.CoreCompileInputs.cache
+C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\LobbyServer\obj\Debug\net6.0\LobbyServer.csproj.CopyComplete
+C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\LobbyServer\obj\Debug\net6.0\LobbyServer.dll
+C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\LobbyServer\obj\Debug\net6.0\ref\LobbyServer.dll
+C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\LobbyServer\obj\Debug\net6.0\LobbyServer.pdb
+C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\LobbyServer\obj\Debug\net6.0\LobbyServer.genruntimeconfig.cache
