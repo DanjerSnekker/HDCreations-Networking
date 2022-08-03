@@ -1,0 +1,11 @@
+C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\GameServer\obj\Debug\GameServer.csproj.AssemblyReference.cache
+C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\GameServer\obj\Debug\GameServer.csproj.SuggestedBindingRedirects.cache
+C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\GameServer\obj\Debug\GameServer.csproj.CoreCompileInputs.cache
+C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\GameServer\bin\Debug\GameServer.exe.config
+C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\GameServer\bin\Debug\GameServer.exe
+C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\GameServer\bin\Debug\GameServer.pdb
+C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\GameServer\bin\Debug\PlayTimePackets.dll
+C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\GameServer\bin\Debug\PlayTimePackets.pdb
+C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\GameServer\obj\Debug\GameServer.csproj.CopyComplete
+C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\GameServer\obj\Debug\GameServer.exe
+C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\GameServer\obj\Debug\GameServer.pdb

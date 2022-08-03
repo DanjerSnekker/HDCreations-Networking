@@ -28,6 +28,11 @@ namespace PlayTimePackets
             LobbyName,
             JoinRequest,
             KickRequest,
+
+            Rigidbody,
+            Instantiate,
+            PlayerController,
+            Trigger
         }
         public PacketType Type { get; private set; }
 
@@ -52,9 +57,9 @@ namespace PlayTimePackets
 
             bw.Write((int)Type);
 
-
             return null;
         }
+
         public virtual BasePacket DeSerialize(byte[] buffer)
         {
             msr = new MemoryStream(buffer);
