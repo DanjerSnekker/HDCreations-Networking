@@ -16,3 +16,5 @@ C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\PlayTimePackets\obj
 C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\PlayTimePackets\obj\Debug\PlayTimePackets.csproj.CoreCompileInputs.cache
 C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\PlayTimePackets\obj\Debug\PlayTimePackets.dll
 C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\PlayTimePackets\obj\Debug\PlayTimePackets.pdb
+C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\PlayTimePackets\bin\Debug\UnityEngine.xml
+C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\PlayTimePackets\obj\Debug\PlayTimePackets.csproj.CopyComplete

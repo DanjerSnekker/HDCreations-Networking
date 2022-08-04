@@ -7,3 +7,11 @@ C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime
 C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\GamePackets\obj\Debug\GamePackets.csproj.CopyComplete
 C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\GamePackets\obj\Debug\GamePackets.dll
 C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\GamePackets\obj\Debug\GamePackets.pdb
+C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\GamePackets\bin\Debug\GamePackets.dll
+C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\GamePackets\bin\Debug\GamePackets.pdb
+C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\GamePackets\bin\Debug\UnityEngine.xml
+C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\GamePackets\obj\Debug\GamePackets.csproj.AssemblyReference.cache
+C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\GamePackets\obj\Debug\GamePackets.csproj.CoreCompileInputs.cache
+C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\GamePackets\obj\Debug\GamePackets.csproj.CopyComplete
+C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\GamePackets\obj\Debug\GamePackets.dll
+C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\GamePackets\obj\Debug\GamePackets.pdb

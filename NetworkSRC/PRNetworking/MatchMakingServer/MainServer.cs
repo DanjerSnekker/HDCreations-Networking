@@ -53,6 +53,14 @@ namespace MatchmakingServer
                     if (ex.SocketErrorCode != SocketError.WouldBlock)
                         Console.WriteLine(ex);
                 }
+                for (int i = 0; i < ClientSockets.Count; i++)
+                {
+                    if (ClientSockets[i].Socket.Available == ClientSockets.Count)
+                    {
+                        Console.WriteLine(ClientSockets[i].Socket.Available);
+                    }
+                }
+                   Console.WriteLine(ClientSockets.Count);
 
                 //Client Packet Loop
                 for (int i = 0; i < ClientSockets.Count; i++)
@@ -107,7 +115,7 @@ namespace MatchmakingServer
                                             {
                                                 ClientSockets[i].Socket.Send(new LobbyInformationPacket(LobbiesList[j].Name, LobbiesList[j].Roomcode, LobbiesList[j].Port, null, Guid.Empty).Serialize());
                                                 ClientSockets.Remove(ClientSockets[i]);
-                                                ClientSockets.Sort();
+                                                //ClientSockets.Sort();
                                                 Console.WriteLine("Client count now");
                                                 for (int e = 0; e < ClientSockets.Count; e++)
                                                 {
@@ -144,7 +152,6 @@ namespace MatchmakingServer
                     if (ex.SocketErrorCode != SocketError.WouldBlock)
                         Console.WriteLine(ex);
                 }
-                //comment in case of merge issues
                 //Lobby Packet Loop
                 for (int i = 0; i < LobbySockets.Count; i++)
                 {

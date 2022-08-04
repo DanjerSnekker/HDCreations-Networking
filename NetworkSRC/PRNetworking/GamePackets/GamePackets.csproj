@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="GameBasePacket.cs" />
     <Compile Include="InstantiateObjPacket.cs" />
+    <Compile Include="PickUpPacket.cs" />
     <Compile Include="PlayerControllerPacket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RigidbodyPacket.cs" />
