@@ -30,15 +30,15 @@ namespace GamePackets
         }
         public PacketType Type { get; private set; }
 
-        public string objID;
+        public int objID;
 
         public GameBasePacket()
         {
             Type = PacketType.Unknown;
-            objID = null;
+            objID = 0;
         }
 
-        public GameBasePacket(PacketType type, string objectID)
+        public GameBasePacket(PacketType type, int objectID)
         {
             this.Type = type;
             objID = objectID;
