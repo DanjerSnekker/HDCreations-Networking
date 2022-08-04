@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GamePackets
 {
-    public class TestPacket : GameBasePacket
+    public class ObjEffectPacket : GameBasePacket
     {
 
     }

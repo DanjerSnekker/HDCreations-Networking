@@ -11,19 +11,33 @@ namespace GamePackets
     {
         public int ownerID { get; set; }
 
+        /*public enum PlayerType
+        {
+            Unkown = -1,
+            Host,
+            Partner
+        }
+
+        public PlayerType playerType;*/
+
+        public int playerIntType;
+
         public bool isGrounded;
         public Vector3 velocity;
 
         public PlayerControllerPacket()
         {
+            //playerType = PlayerType.Unkown;
+            playerIntType = -1;
             isGrounded = true;
             velocity = Vector3.zero;
         }
 
-        public PlayerControllerPacket(string objID, int ownershipID, bool grounded, Vector3 moveVelocity) :
+        public PlayerControllerPacket(int type, int objID, bool grounded, Vector3 moveVelocity) :
             base(PacketType.PlayerController, objID)
         {
-            ownerID = ownershipID;
+            //playerType = (PlayerType) type;
+            playerIntType = type;
             isGrounded = grounded;
             velocity = moveVelocity;
         }
@@ -32,7 +46,8 @@ namespace GamePackets
         {
             base.Serialize();
 
-            bw.Write(ownerID);
+            //bw.Write((int)playerType);
+            bw.Write((int)playerIntType);      //Might be dumb, but this is so I can access the correct data.
             bw.Write(isGrounded);
             bw.Write(velocity.x);
             bw.Write(velocity.y);
@@ -44,7 +59,8 @@ namespace GamePackets
         {
             base.DeSerialize(buffer);
 
-            ownerID = br.ReadInt32();
+            //playerType = (PlayerType) br.ReadInt32();
+            playerIntType = br.ReadInt32();
             isGrounded = br.ReadBoolean();
             velocity = new Vector3(br.ReadSingle(), br.ReadSingle(), br.ReadSingle());
             return this;

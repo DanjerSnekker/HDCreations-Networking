@@ -16,3 +16,12 @@ C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\PlayTimePackets\obj
 C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\PlayTimePackets\obj\Debug\PlayTimePackets.csproj.CoreCompileInputs.cache
 C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\PlayTimePackets\obj\Debug\PlayTimePackets.dll
 C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\PlayTimePackets\obj\Debug\PlayTimePackets.pdb
+C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\PlayTimePackets\bin\Debug\PlayTimePackets.dll
+C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\PlayTimePackets\bin\Debug\PlayTimePackets.pdb
+C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\PlayTimePackets\bin\Debug\UnityEngine.dll
+C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\PlayTimePackets\bin\Debug\UnityEngine.xml
+C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\PlayTimePackets\obj\Debug\PlayTimePackets.csproj.AssemblyReference.cache
+C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\PlayTimePackets\obj\Debug\PlayTimePackets.csproj.CoreCompileInputs.cache
+C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\PlayTimePackets\obj\Debug\PlayTimePackets.csproj.CopyComplete
+C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\PlayTimePackets\obj\Debug\PlayTimePackets.dll
+C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PRNetwork\NetworkSRC\PRNetworking\PlayTimePackets\obj\Debug\PlayTimePackets.pdb

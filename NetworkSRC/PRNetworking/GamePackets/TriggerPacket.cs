@@ -16,10 +16,10 @@ namespace GamePackets
             triggerActive = false;
         }
 
-        public TriggerPacket(string objID, bool button) :
+        public TriggerPacket(int objID, bool activeTrigger) :
             base(PacketType.Trigger, objID)
         {
-            triggerActive = button;
+            triggerActive = activeTrigger;
         }
 
         public override byte[] Serialize()
