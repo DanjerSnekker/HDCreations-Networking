@@ -16,7 +16,7 @@ namespace GamePackets
             triggerActive = false;
         }
 
-        public TriggerPacket(int objID, bool activeTrigger) :
+        public TriggerPacket(string objID, bool activeTrigger) :
             base(PacketType.Trigger, objID)
         {
             triggerActive = activeTrigger;

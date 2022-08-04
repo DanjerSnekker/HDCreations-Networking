@@ -9,17 +9,6 @@ namespace GamePackets
 {
     public class PlayerControllerPacket : GameBasePacket
     {
-        public int ownerID { get; set; }
-
-        /*public enum PlayerType
-        {
-            Unkown = -1,
-            Host,
-            Partner
-        }
-
-        public PlayerType playerType;*/
-
         public int playerIntType;
 
         public bool isGrounded;
@@ -33,7 +22,7 @@ namespace GamePackets
             velocity = Vector3.zero;
         }
 
-        public PlayerControllerPacket(int type, int objID, bool grounded, Vector3 moveVelocity) :
+        public PlayerControllerPacket(int type, string objID, bool grounded, Vector3 moveVelocity) :
             base(PacketType.PlayerController, objID)
         {
             //playerType = (PlayerType) type;

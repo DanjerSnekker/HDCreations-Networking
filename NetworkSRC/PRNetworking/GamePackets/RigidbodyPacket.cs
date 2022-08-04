@@ -24,7 +24,7 @@ namespace GamePackets
             isKinematic = false;
         }
 
-        public RigidbodyPacket(Rigidbody rigidbody, int objID) :
+        public RigidbodyPacket(Rigidbody rigidbody, string objID) :
             base(PacketType.Rigidbody, objID)
         {
             mass = rigidbody.mass;
