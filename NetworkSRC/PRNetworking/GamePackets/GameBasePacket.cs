@@ -30,15 +30,15 @@ namespace GamePackets
         }
         public PacketType Type { get; private set; }
 
-        public int objID;
+        public string objID;
 
         public GameBasePacket()
         {
             Type = PacketType.Unknown;
-            objID = 0;
+            objID = "";
         }
 
-        public GameBasePacket(PacketType type, int objectID)
+        public GameBasePacket(PacketType type, string objectID)
         {
             this.Type = type;
             objID = objectID;
@@ -50,7 +50,7 @@ namespace GamePackets
             bw = new BinaryWriter(ms);
 
             bw.Write((int)Type);
-
+            bw.Write(objID);
 
             return null;
         }
@@ -60,7 +60,7 @@ namespace GamePackets
             br = new BinaryReader(msr);
 
             Type = (PacketType)br.ReadInt32();
-
+            objID = br.ReadString();
             return this;
         }
     }

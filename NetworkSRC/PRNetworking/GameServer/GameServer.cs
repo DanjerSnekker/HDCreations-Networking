@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Net.Sockets;
 using System.Net;
 using PlayTimePackets;
+using GamePackets;
+using UnityEngine;
 
 namespace GameServer
 {
@@ -23,7 +25,7 @@ namespace GameServer
             List<Socket> clients = new List<Socket>();
 
             Player serverPlayer = new Player("1");
-            string message = "Welcome my friend";
+            //string message = "Welcome my friend";
 
             while (true)
             {
@@ -49,7 +51,7 @@ namespace GameServer
                             byte[] receivedBuffer = new byte[clients[i].Available];
                             clients[i].Receive(receivedBuffer);
 
-                            BasePacket pb = new BasePacket().DeSerialize(receivedBuffer);
+                            GameBasePacket pb = new GameBasePacket().DeSerialize(receivedBuffer);
 
                             //clients[i].Send(receivedBuffer);
 
@@ -59,8 +61,10 @@ namespace GameServer
                                     continue;
 
                                 //Console.WriteLine(receivedBuffer);
-                                Console.WriteLine($"{pb.Type} packet by {pb.player.Name}, has been sent to the others");
+                                
                                 clients[j].Send(receivedBuffer);
+                                TestPacket testPacket = (TestPacket)new TestPacket().DeSerialize(receivedBuffer);
+                                Console.WriteLine($"{pb.Type} packet of {pb.objID} conaining {testPacket.objPos}, has been sent to the others");
                             }
                         }
                     }

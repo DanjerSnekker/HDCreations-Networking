@@ -18,7 +18,7 @@ namespace GamePackets
             prefabName = "";
         }
 
-        public InstantiateObjPacket(string prefabName, int objID) :
+        public InstantiateObjPacket(string prefabName, string objID) :
             base(PacketType.Instantiate, objID)
         {
             
