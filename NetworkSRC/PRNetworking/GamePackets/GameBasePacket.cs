@@ -26,7 +26,9 @@ namespace GamePackets
             Instantiate,
             PlayerController,
             Trigger,
-            PickUp
+            PickUp,
+            Partner,
+            SizeMass
         }
         public PacketType Type { get; private set; }
 

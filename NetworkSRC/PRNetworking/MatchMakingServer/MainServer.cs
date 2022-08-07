@@ -53,14 +53,14 @@ namespace MatchmakingServer
                     if (ex.SocketErrorCode != SocketError.WouldBlock)
                         Console.WriteLine(ex);
                 }
-                for (int i = 0; i < ClientSockets.Count; i++)
+                /*for (int i = 0; i < ClientSockets.Count; i++)
                 {
                     if (ClientSockets[i].Socket.Available == ClientSockets.Count)
                     {
                         Console.WriteLine(ClientSockets[i].Socket.Available);
                     }
                 }
-                   Console.WriteLine(ClientSockets.Count);
+                   Console.WriteLine(ClientSockets.Count);*/
 
                 //Client Packet Loop
                 for (int i = 0; i < ClientSockets.Count; i++)
@@ -115,7 +115,6 @@ namespace MatchmakingServer
                                             {
                                                 ClientSockets[i].Socket.Send(new LobbyInformationPacket(LobbiesList[j].Name, LobbiesList[j].Roomcode, LobbiesList[j].Port, null, Guid.Empty).Serialize());
                                                 ClientSockets.Remove(ClientSockets[i]);
-                                                //ClientSockets.Sort();
                                                 Console.WriteLine("Client count now");
                                                 for (int e = 0; e < ClientSockets.Count; e++)
                                                 {
@@ -125,7 +124,6 @@ namespace MatchmakingServer
                                             }
                                             else
                                             {
-                                                //this is in case the room code inputted was invalid
                                                 Console.WriteLine("Incorrect Room Code Inputted");
                                                 ClientSockets[i].Socket.Send(new JoinRequestPacket("null", 0, "The Room You Entered Is Invalid", ClientSockets[i].Player).Serialize());
                                             }
@@ -177,8 +175,6 @@ namespace MatchmakingServer
                                     if (ClientSockets[e].Player.ID == lp.hostID)
                                     {
                                         ClientSockets[e].Socket.Send(lp.Serialize());
-                                        //JoinClientToLobby(ClientSockets[e], lp.Name, lp.RoomCode, lp.LobbyPort);
-                                        //Console.WriteLine(lp.player.ID + "Has Successfully Connected To " + lp.Name);
                                         ClientSockets.Remove(ClientSockets[e]);
                                     }
                                 }
