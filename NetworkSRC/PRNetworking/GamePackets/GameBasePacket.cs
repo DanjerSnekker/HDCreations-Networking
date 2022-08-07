@@ -25,7 +25,9 @@ namespace GamePackets
             Rigidbody,
             Instantiate,
             PlayerController,
-            Trigger
+            Trigger,
+            PlayerInfo,
+            PlayerSpawn
         }
         public PacketType Type { get; private set; }
 
