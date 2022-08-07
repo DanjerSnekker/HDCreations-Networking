@@ -26,6 +26,9 @@ namespace GamePackets
             Instantiate,
             PlayerController,
             Trigger,
+            PickUp,
+            Partner,
+            SizeMass
             PlayerInfo,
             PlayerSpawn
         }

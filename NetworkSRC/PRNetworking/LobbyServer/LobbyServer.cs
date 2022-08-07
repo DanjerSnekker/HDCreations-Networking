@@ -100,19 +100,28 @@ namespace LobbyServer
                                 case BasePacket.PacketType.KickRequest:
                                     KickRequestPacket krp = (KickRequestPacket)new KickRequestPacket().DeSerialize(recievedBuffer);
                                     Console.WriteLine("Recieved Kick Request + ");
-                                    /*for (int e = 0; e < clients.Count; e++)
+                                    for (int e = 0; e < clients.Count; e++)
                                     {
                                         if (e != i)
                                         {
                                             clients[e].Socket.Send(recievedBuffer);
+                                            clients[e].Socket.Connect(new IPEndPoint(IPAddress.Parse("127.0.0.1"), 3300));
+                                            clients.Remove(clients[e]);
                                         }
                                     }
-                                    clients.Remove(clients[i]);*/
+                                    break;
+                                case BasePacket.PacketType.StartGame:
+                                    StartGamePacket sgp = (StartGamePacket)new StartGamePacket().DeSerialize(recievedBuffer);
+                                    Console.WriteLine("Starting Game");
+                                    for (int e = 0; e < clients.Count; e++)
+                                    { 
+                                        clients[e].Socket.Send(recievedBuffer);             
+                                    }
                                     break;
                             }
                             //Check for Leave Request (If Host Close Lobby)
-                            //Check for Start Game
-
+                            
+                            //Check for Start
                             for (int e = 0; e < clients.Count; e++)
                             {
                                 if (e != i)
