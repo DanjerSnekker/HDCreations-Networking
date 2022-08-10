@@ -9,27 +9,30 @@ namespace GamePackets
 {
     public class PlayerControllerPacket : GameBasePacket
     {
-        public int playerIntType;
+        //public int playerIntType;
 
         public Vector3 position;
+
         /*public Vector3 movement;
         public Vector3 velocity;*/
 
         public PlayerControllerPacket()
         {
-            //playerType = PlayerType.Unkown;
-            playerIntType = -1;
+            //playerIntType = -1;
+
             position = Vector3.zero;
-            //velocity = Vector3.zero;
+
+            /*movement = Vector3.zero;
+            velocity = Vector3.zero;*/
         }
 
-        public PlayerControllerPacket(int type, string objID, Vector3 position) :
+        public PlayerControllerPacket(string objID, Vector3 position) :
             base(PacketType.PlayerController, objID)
         {
-            //playerType = (PlayerType) type;
-            playerIntType = type;
+            //playerIntType = type;
 
             this.position = position;
+
             /*movement = move;
             velocity = moveVelocity;*/
         }
@@ -38,8 +41,7 @@ namespace GamePackets
         {
             base.Serialize();
 
-            //bw.Write((int)playerType);
-            bw.Write((int)playerIntType);      //Might be dumb, but this is so I can access the correct data.
+            //bw.Write((int)playerIntType);      //Might be dumb, but this is so I can access the correct data.
 
             bw.Write(position.x);
             bw.Write(position.y);
@@ -52,6 +54,7 @@ namespace GamePackets
             bw.Write(velocity.x);
             bw.Write(velocity.y);
             bw.Write(velocity.z);*/
+
             return ms.ToArray();
         }
 
@@ -60,7 +63,7 @@ namespace GamePackets
             base.DeSerialize(buffer);
 
             //playerType = (PlayerType) br.ReadInt32();
-            playerIntType = br.ReadInt32();
+            //playerIntType = br.ReadInt32();
 
             position = new Vector3(br.ReadSingle(), br.ReadSingle(), br.ReadSingle());
 

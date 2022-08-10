@@ -10,18 +10,17 @@ namespace GamePackets
     {
         public string playerName;
 
-        public Guid playerID;
-        public int playerIntType;
+        //public string playerID;
+        //public int playerIntType;
 
         public PlayerInfoPacket()
         {
         }
 
-        public PlayerInfoPacket(Guid playerID, string name) :
-            base(PacketType.PlayerInfo, name)
+        public PlayerInfoPacket(string objId) :
+            base(PacketType.PlayerInfo, objId)
         {
-            playerName = name;
-            this.playerID = playerID;
+            playerName = objID;
         }
 
         public override byte[] Serialize()
@@ -29,7 +28,7 @@ namespace GamePackets
             base.Serialize();
 
             bw.Write(playerName);
-            bw.Write(playerID.ToString());
+            //bw.Write(playerID);
 
             return ms.ToArray();
         }
@@ -39,7 +38,7 @@ namespace GamePackets
             base.DeSerialize(buffer);
 
             playerName = br.ReadString();
-            playerID = new Guid(br.ReadString());
+            //playerID = br.ReadString();
 
             return this;
         }

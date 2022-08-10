@@ -9,7 +9,7 @@ namespace GamePackets
 {
     public class InstantiateObjPacket : GameBasePacket
     {
-        public int OwnerID { get; set; }
+        public string OwnerID { get; set; }
 
         public string prefabName { get; set; }
 

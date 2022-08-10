@@ -60,6 +60,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(TargetPath)" "C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PlaytimeRetreat\Assets\Scripts\Networking -Farhan" /y
+
 xcopy "$(TargetDir)$(TargetName).pdb" "C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PlaytimeRetreat\Assets\Scripts\Networking -Farhan" /y</PostBuildEvent>
   </PropertyGroup>
 </Project>

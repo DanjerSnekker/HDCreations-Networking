@@ -31,7 +31,9 @@ namespace GamePackets
             bw.Write(Scale.x);
             bw.Write(Scale.y);
             bw.Write(Scale.z);
+
             bw.Write(Mass);
+
             return ms.ToArray();
         }
 
