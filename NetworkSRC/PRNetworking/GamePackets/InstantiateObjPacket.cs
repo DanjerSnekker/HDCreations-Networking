@@ -18,12 +18,12 @@ namespace GamePackets
             prefabName = "";
         }
 
-        public InstantiateObjPacket(string prefabName, string ownerid ,string objID) :
+        public InstantiateObjPacket(string prefabName, string ownerID, string objID) :
             base(PacketType.Instantiate, objID)
         {
             
             this.prefabName = prefabName;
-            this.OwnerID = ownerid;
+            this.OwnerID = ownerID;
         }
 
         public override byte[] Serialize()
@@ -41,8 +41,6 @@ namespace GamePackets
 
             OwnerID = br.ReadString();
             prefabName = br.ReadString();
-            //OwnerID = Guid.Parse(br.ReadString());
-            //OwnerID = new Guid (br.ReadString());
             return this;
         }
     }
