@@ -12,6 +12,8 @@ namespace GamePackets
         public Guid playerID;
         public Vector3 spawnPos;
 
+
+        //chqange testt
         public SpawnPosPacket()
         {
             spawnPos = Vector3.zero;

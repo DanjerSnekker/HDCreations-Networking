@@ -70,6 +70,22 @@ namespace GameServer
 
                             /*switch (pb.Type)
                             {
+                                case GameBasePacket.PacketType.Instantiate:
+                                    InstantiateObjPacket iop = (InstantiateObjPacket)new InstantiateObjPacket().DeSerialize(receivedBuffer);
+                                    Console.WriteLine(iop.prefabName);
+                                    Console.WriteLine(iop.OwnerID);
+                                    for (int j = clients.Count - 1; j >= 0; j--)
+                                    {
+                                        if (i == j)
+                                            continue;
+
+                                        clients[j].Socket.Send(receivedBuffer);
+                                    }
+                                    break;
+                            }*/
+
+                            /*switch (pb.Type)
+                            {
                                 case GameBasePacket.PacketType.PlayerInfo:
                                     PlayerInfoPacket piPack = (PlayerInfoPacket)new PlayerInfoPacket().DeSerialize(receivedBuffer);
                                     Player tempPlayer = new Player(piPack.playerName, piPack.playerID);
@@ -123,7 +139,7 @@ namespace GameServer
                     }
                 }
 
-                if (!playerCredentialsGrabbed)
+                /*if (!playerCredentialsGrabbed)
                 {
                     bool playersDefined = true;
 
@@ -132,7 +148,7 @@ namespace GameServer
                         if (clients[i].Player.Name == "Undefined")
                         {
                             playersDefined = false;
-                            Console.WriteLine(playersDefined);
+                            //Console.WriteLine(playersDefined);
                             break;
                         }
 
@@ -146,7 +162,7 @@ namespace GameServer
                             clients[1].Socket.Send(new SpawnPosPacket(clients[i].Player.ID, new Vector3(2, 2, 2)).Serialize());
                         }
                     }
-                }
+                }*/
             }
 
             Console.ReadKey();

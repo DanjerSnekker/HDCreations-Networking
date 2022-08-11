@@ -13,6 +13,8 @@ namespace GamePackets
         //public string playerID;
         //public int playerIntType;
 
+        //change test..
+
         public PlayerInfoPacket()
         {
         }
