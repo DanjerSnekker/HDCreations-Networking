@@ -19,7 +19,7 @@ namespace GamePackets
         public RigidbodyPacket()
         {
             velocity = Vector3.zero;
-            mass = 1f;
+            mass = 1f; 
             gravityActive = true;
             isKinematic = false;
         }
@@ -29,7 +29,7 @@ namespace GamePackets
         {
             mass = rigidbody.mass;
             gravityActive = rigidbody.useGravity;
-            isKinematic = rigidbody.isKinematic;
+             isKinematic = rigidbody.isKinematic;
 
             velocity = rigidbody.velocity;
         }

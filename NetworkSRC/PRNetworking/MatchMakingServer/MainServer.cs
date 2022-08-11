@@ -106,20 +106,9 @@ namespace MatchmakingServer
                                     {
                                         if (LobbiesList[j].Name == jrp.RoomName)
                                         {
-                                            Console.WriteLine("Client count then:");
-                                            for (int e = 0; e < ClientSockets.Count; e++)
-                                            {
-                                                Console.WriteLine(ClientSockets[e]);
-                                            }
                                             if (LobbiesList[j].Roomcode == jrp.RoomCode)
                                             {
                                                 ClientSockets[i].Socket.Send(new LobbyInformationPacket(LobbiesList[j].Name, LobbiesList[j].Roomcode, LobbiesList[j].Port, null, Guid.Empty).Serialize());
-                                                ClientSockets.Remove(ClientSockets[i]);
-                                                Console.WriteLine("Client count now");
-                                                for (int e = 0; e < ClientSockets.Count; e++)
-                                                {
-                                                    Console.WriteLine(ClientSockets[e]);
-                                                }
                                                 // Console.WriteLine("RoomCode Found! Sending Player To " + LobbiesList[i].Name);
                                             }
                                             else
@@ -175,7 +164,7 @@ namespace MatchmakingServer
                                     if (ClientSockets[e].Player.ID == lp.hostID)
                                     {
                                         ClientSockets[e].Socket.Send(lp.Serialize());
-                                        ClientSockets.Remove(ClientSockets[e]);
+                                        //ClientSockets.Remove(ClientSockets[e]);
                                     }
                                 }
                                 break;

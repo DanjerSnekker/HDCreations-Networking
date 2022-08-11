@@ -65,7 +65,6 @@ namespace LobbyServer
                 if(clients.Count > 2) // if a third person connects..then kick them here cuz lobby would be full by 2 people..
                 {
                     clients[clients.Count - 1].Socket.Send(new KickRequestPacket("Lobby Is Full", clients[2].Player).Serialize());
-                    clients[clients.Count - 1].Socket.Disconnect(false);
                     clients.RemoveAt(clients.Count - 1);
                     Console.WriteLine(" Kicking Third Person");
                 }
@@ -83,6 +82,7 @@ namespace LobbyServer
                             BasePacket pb = new BasePacket().DeSerialize(recievedBuffer);
                             switch (pb.Type)
                             {
+                                //check for chat
                                 case BasePacket.PacketType.Message:
 
                                     MessagePacket packet = (MessagePacket)new MessagePacket().DeSerialize(recievedBuffer);
@@ -105,11 +105,11 @@ namespace LobbyServer
                                         if (e != i)
                                         {
                                             clients[e].Socket.Send(recievedBuffer);
-                                            clients[e].Socket.Connect(new IPEndPoint(IPAddress.Parse("127.0.0.1"), 3300));
                                             clients.Remove(clients[e]);
                                         }
                                     }
                                     break;
+                                //Check for Start
                                 case BasePacket.PacketType.StartGame:
                                     StartGamePacket sgp = (StartGamePacket)new StartGamePacket().DeSerialize(recievedBuffer);
                                     Console.WriteLine("Starting Game");
@@ -121,7 +121,6 @@ namespace LobbyServer
                             }
                             //Check for Leave Request (If Host Close Lobby)
                             
-                            //Check for Start
                             for (int e = 0; e < clients.Count; e++)
                             {
                                 if (e != i)
@@ -135,33 +134,28 @@ namespace LobbyServer
                             if (ex.SocketErrorCode != SocketError.WouldBlock) throw;
                         }
                     }
-                }
-            }
-            while (true)
-            {
-                //server packet loop;
-                try
-                {
-                    byte[] recievedBuffer = new byte[MainSocket.Available];
-                    MainSocket.Receive(recievedBuffer);
-                    //Look for packet from main
-                    BasePacket pb = new BasePacket().DeSerialize(recievedBuffer);
-                    switch (pb.Type)
+                    // server packet loop
+                    /*try
                     {
-                        case BasePacket.PacketType.DisplayLobby:
-                           // MainSocket.Send(new DisplayLobbiesPacket().Serialize());
-                            break;
-                    }
+                        byte[] recievedBuffer = new byte[MainSocket.Available];
+                        MainSocket.Receive(recievedBuffer);
+                        //Look for packet from main
+                        BasePacket pb = new BasePacket().DeSerialize(recievedBuffer);
+                        for (int e = 0; e < clients.Count; e++)
+                        {
+                            if (e != i)
+                            {
+                                clients[e].Socket.Send(recievedBuffer);
+                            }
+                        }
 
-                    // Check for roomcode request
-                    // Check for port request
-                    // Check for name request
+                    }
+                    catch (SocketException ex)
+                    {
+                        if (ex.SocketErrorCode != SocketError.WouldBlock) Console.WriteLine(ex);//throw;
+                    }*/
                 }
-                catch (SocketException ex)
-                {
-                    if (ex.SocketErrorCode != SocketError.WouldBlock) Console.WriteLine(ex);//throw;
-                }
-            }
+              }
         }
 
         static int RandomRoomCode(int min, int max)
