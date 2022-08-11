@@ -9,6 +9,7 @@ using PlayTimePackets;
 using GamePackets;
 using UnityEngine;
 
+
 namespace GameServer
 {
     internal class GameServer
@@ -20,19 +21,24 @@ namespace GameServer
             listeningSocket.Listen(10);
             listeningSocket.Blocking = false;
 
+
             Console.WriteLine("We are currently expecting a few guests..");
 
-            List<Socket> clients = new List<Socket>();
+            List<Client> clients = new List<Client>();
 
             Player serverPlayer = new Player("1");
             //string message = "Welcome my friend";
+
+            bool playerCredentialsGrabbed = false;
 
             while (true)
             {
                 try
                 {
-                    clients.Add(listeningSocket.Accept());
+                    clients.Add(new Client(listeningSocket.Accept()));
                     Console.WriteLine($"Ah they have arrived.");
+
+                    
 
                     //clients[clients.Count - 1].Send(new MessagePacket(message, serverPlayer).Serialize());
                 }
@@ -42,18 +48,59 @@ namespace GameServer
                         Console.WriteLine(sE);
                 }
 
+                if (clients.Count == 1)
+                {
+                    clients[0].Socket.Send(new PlayerInfoPacket("Player1").Serialize());
+                }
+                else if (clients.Count == 2)
+                {
+                    clients[1].Socket.Send(new PlayerInfoPacket("Player2").Serialize());
+                }
+
                 for (int i = clients.Count - 1; i >= 0; i--)
                 {
                     try
                     {
-                        if (clients[i].Available > 0)
+                        if (clients[i].Socket.Available > 0)
                         {
-                            byte[] receivedBuffer = new byte[clients[i].Available];
-                            clients[i].Receive(receivedBuffer);
+                            byte[] receivedBuffer = new byte[clients[i].Socket.Available];
+                            clients[i].Socket.Receive(receivedBuffer);
 
                             GameBasePacket pb = new GameBasePacket().DeSerialize(receivedBuffer);
 
-                            //clients[i].Send(receivedBuffer);
+                            /*switch (pb.Type)
+                            {
+                                case GameBasePacket.PacketType.PlayerInfo:
+                                    PlayerInfoPacket piPack = (PlayerInfoPacket)new PlayerInfoPacket().DeSerialize(receivedBuffer);
+                                    Player tempPlayer = new Player(piPack.playerName, piPack.playerID);
+
+                                    if (piPack.playerID == clients[i].Player.ID)
+                                    {
+                                        Client tempClient = new Client(clients[i].Socket, tempPlayer);
+                                        clients[i] = tempClient;
+                                        Console.WriteLine($"{clients[i].Player.Name} with ID {clients[i].Player.ID} has been added");
+
+                                        if (i == 0)
+                                        {
+                                            clients[i + 1].Socket.Send(new PlayerInfoPacket(clients[i].Player.ID, clients[i].Player.Name).Serialize());
+                                        }
+                                        else if (i == 1)
+                                        {
+                                            clients[i - 1].Socket.Send(new PlayerInfoPacket(clients[i].Player.ID, clients[i].Player.Name).Serialize());
+                                        }
+                                    }
+
+                                    break;
+
+                                default:
+                                    break;
+                            }*/
+
+                            //Switch case looking for PlayerInfo packet. Upon receiving, create new Player obj using that info.
+                            //Create temp playerobj, give it the socket of the current player and then replace the old player obj with the new one.
+                            //Check that both players have names and if they do, send a spawnpoint packet to each player.
+                            //Spawnpoint Packet contains playerID and spawnPos. 
+
 
                             for (int j = clients.Count - 1; j >= 0; j--)
                             {
@@ -61,16 +108,43 @@ namespace GameServer
                                     continue;
 
                                 //Console.WriteLine(receivedBuffer);
-                                
-                                clients[j].Send(receivedBuffer);
-                                TestPacket testPacket = (TestPacket)new TestPacket().DeSerialize(receivedBuffer);
-                                Console.WriteLine($"{pb.Type} packet of {pb.objID} conaining {testPacket.objPos}, has been sent to the others");
+
+                                clients[j].Socket.Send(receivedBuffer);
+
+                                //Debug line for the Test Packet
+                                /*TestPacket testPacket = (TestPacket)new TestPacket().DeSerialize(receivedBuffer);
+                                Console.WriteLine($"{pb.Type} packet of {pb.objID} conaining {testPacket.objPos}, has been sent to the others");*/
                             }
                         }
                     }
                     catch (SocketException ex)
                     {
 
+                    }
+                }
+
+                if (!playerCredentialsGrabbed)
+                {
+                    bool playersDefined = true;
+
+                    for (int i = 0; i < clients.Count; i++)
+                    {
+                        if (clients[i].Player.Name == "Undefined")
+                        {
+                            playersDefined = false;
+                            Console.WriteLine(playersDefined);
+                            break;
+                        }
+
+                    }
+
+                    if (playersDefined)
+                    {
+                        for (int i = 0; i < clients.Count; i++)
+                        {
+                            clients[0].Socket.Send(new SpawnPosPacket(clients[i].Player.ID, new Vector3(0, 2, i)).Serialize());
+                            clients[1].Socket.Send(new SpawnPosPacket(clients[i].Player.ID, new Vector3(2, 2, 2)).Serialize());
+                        }
                     }
                 }
             }

@@ -48,16 +48,19 @@
     <Compile Include="InstantiateObjPacket.cs" />
     <Compile Include="PickUpPacket.cs" />
     <Compile Include="PlayerControllerPacket.cs" />
+    <Compile Include="PlayerInfoPacket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RigidbodyPacket.cs" />
     <Compile Include="ObjEffectPacket.cs" />
     <Compile Include="SizeMassPacket.cs" />
+    <Compile Include="SpawnPosPacket.cs" />
     <Compile Include="TestPacket.cs" />
     <Compile Include="TriggerPacket.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(TargetPath)" "C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PlaytimeRetreat\Assets\Scripts\Networking -Farhan" /y
+
 xcopy "$(TargetDir)$(TargetName).pdb" "C:\Users\farha\Desktop\My Stuff\SAE\SAE Projects\GPG - GDS 314 Projects\Playtime Retreat\PlaytimeRetreat\Assets\Scripts\Networking -Farhan" /y</PostBuildEvent>
   </PropertyGroup>
 </Project>
