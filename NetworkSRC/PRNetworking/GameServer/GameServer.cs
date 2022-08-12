@@ -25,8 +25,10 @@ namespace GameServer
             Console.WriteLine("We are currently expecting a few guests..");
 
             List<Client> clients = new List<Client>();
+            List<string> PlayerIds = new List<string>();
+            // make another list for the object ids;
 
-            Player serverPlayer = new Player("1");
+             Player serverPlayer = new Player("1");
             //string message = "Welcome my friend";
 
             bool playerCredentialsGrabbed = false;
@@ -55,6 +57,7 @@ namespace GameServer
                 else if (clients.Count == 2)
                 {
                     clients[1].Socket.Send(new PlayerInfoPacket("Player2").Serialize());
+                    clients[1].Socket.Send(new InstantiateObjPacket("", PlayerIds[0], "Player1").Serialize());
                 }
 
                 for (int i = clients.Count - 1; i >= 0; i--)
@@ -68,12 +71,14 @@ namespace GameServer
 
                             GameBasePacket pb = new GameBasePacket().DeSerialize(receivedBuffer);
 
-                            /*switch (pb.Type)
+                            switch (pb.Type)
                             {
                                 case GameBasePacket.PacketType.Instantiate:
                                     InstantiateObjPacket iop = (InstantiateObjPacket)new InstantiateObjPacket().DeSerialize(receivedBuffer);
-                                    Console.WriteLine(iop.prefabName);
+                                    //Console.WriteLine(iop.prefabName);
                                     Console.WriteLine(iop.OwnerID);
+                                    PlayerIds.Add(iop.OwnerID);
+                                    //make another list for the object ids;
                                     for (int j = clients.Count - 1; j >= 0; j--)
                                     {
                                         if (i == j)
@@ -82,7 +87,7 @@ namespace GameServer
                                         clients[j].Socket.Send(receivedBuffer);
                                     }
                                     break;
-                            }*/
+                            }
 
                             /*switch (pb.Type)
                             {
