@@ -8,29 +8,25 @@ namespace GamePackets
 {
     public class PlayerInfoPacket : GameBasePacket
     {
-        public string playerName;
-
-        //public string playerID;
-        //public int playerIntType;
-
-        //change test..
+        public string clientDesignation;
 
         public PlayerInfoPacket()
         {
+            clientDesignation = "";
         }
 
+        //This packet should only be used once, when assigning clients. In every other packet except this one and Instantiation, objID refers to the object name.
         public PlayerInfoPacket(string objId) :
             base(PacketType.PlayerInfo, objId)
         {
-            playerName = objID;
+            clientDesignation = objID;
         }
 
         public override byte[] Serialize()
         {
             base.Serialize();
 
-            bw.Write(playerName);
-            //bw.Write(playerID);
+            bw.Write(clientDesignation);
 
             return ms.ToArray();
         }
@@ -39,8 +35,7 @@ namespace GamePackets
         {
             base.DeSerialize(buffer);
 
-            playerName = br.ReadString();
-            //playerID = br.ReadString();
+            clientDesignation = br.ReadString();
 
             return this;
         }

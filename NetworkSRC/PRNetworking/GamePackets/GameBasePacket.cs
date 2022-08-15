@@ -24,14 +24,14 @@ namespace GamePackets
 
             Rigidbody,
             Instantiate,
-            PlayerController,
             Trigger,
 
             PickUp,
             SizeMass,
 
+            ClientReady,
             PlayerInfo,
-            PlayerSpawn
+            PlayerController,
         }
         public PacketType Type { get; private set; }
 

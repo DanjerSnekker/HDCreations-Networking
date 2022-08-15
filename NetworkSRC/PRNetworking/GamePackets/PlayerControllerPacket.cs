@@ -9,51 +9,58 @@ namespace GamePackets
 {
     public class PlayerControllerPacket : GameBasePacket
     {
-        //public int playerIntType;
-
         public Vector3 position;
+        public Vector3 movement;
+        public Vector3 velocity;
 
-        /*public Vector3 movement;
-        public Vector3 velocity;*/
+        public string ownershipID;
 
         public PlayerControllerPacket()
         {
-            //playerIntType = -1;
-
             position = Vector3.zero;
+            movement = Vector3.zero;
+            velocity = Vector3.zero;
 
-            /*movement = Vector3.zero;
-            velocity = Vector3.zero;*/
+            ownershipID = "";
         }
 
-        public PlayerControllerPacket(string objID, Vector3 position) :
+        public PlayerControllerPacket(Vector3 pcPos, string ownerID, string objID) :
             base(PacketType.PlayerController, objID)
         {
-            //playerIntType = type;
+            position = pcPos;
+            movement = Vector3.zero;
+            velocity = Vector3.zero;
 
-            this.position = position;
+            ownershipID = ownerID;
+        }
 
-            /*movement = move;
-            velocity = moveVelocity;*/
+        public PlayerControllerPacket(Vector3 move, Vector3 jumpVelocity, string ownerID, string objID) :
+            base(PacketType.PlayerController, objID)
+        {
+            position = Vector3.zero;
+            movement = move;
+            velocity = jumpVelocity;
+
+            ownershipID = ownerID;
         }
 
         public override byte[] Serialize()
         {
             base.Serialize();
 
-            //bw.Write((int)playerIntType);      //Might be dumb, but this is so I can access the correct data.
-
             bw.Write(position.x);
             bw.Write(position.y);
             bw.Write(position.z);
 
-            /*bw.Write(movement.x);
+            bw.Write(movement.x);
             bw.Write(movement.y);
             bw.Write(movement.z);
 
             bw.Write(velocity.x);
             bw.Write(velocity.y);
-            bw.Write(velocity.z);*/
+            bw.Write(velocity.z);
+
+            bw.Write(ownershipID);
 
             return ms.ToArray();
         }
@@ -62,13 +69,11 @@ namespace GamePackets
         {
             base.DeSerialize(buffer);
 
-            //playerType = (PlayerType) br.ReadInt32();
-            //playerIntType = br.ReadInt32();
-
             position = new Vector3(br.ReadSingle(), br.ReadSingle(), br.ReadSingle());
+            movement = new Vector3(br.ReadSingle(), br.ReadSingle(), br.ReadSingle());
+            velocity = new Vector3(br.ReadSingle(), br.ReadSingle(), br.ReadSingle());
 
-            /*movement = new Vector3(br.ReadSingle(), br.ReadSingle(), br.ReadSingle());
-            velocity = new Vector3(br.ReadSingle(), br.ReadSingle(), br.ReadSingle());*/
+            ownershipID = br.ReadString();
 
             return this;
         }
