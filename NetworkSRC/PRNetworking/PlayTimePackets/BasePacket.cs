@@ -29,6 +29,8 @@ namespace PlayTimePackets
             JoinRequest,
             KickRequest,
             StartGame,
+            LeaveLobby,
+            PlayerShutDown,
 
             Rigidbody,
             Instantiate,

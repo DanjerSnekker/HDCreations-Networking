@@ -50,10 +50,12 @@
     <Compile Include="DisplayLobbiesPacket.cs" />
     <Compile Include="JoinRequestPacket.cs" />
     <Compile Include="KickRequestPacket.cs" />
+    <Compile Include="LeaveRequestPacket.cs" />
     <Compile Include="LobbyInformationPacket.cs" />
     <Compile Include="LobbyNamesPacket.cs" />
     <Compile Include="MessagePacket.cs" />
     <Compile Include="Player.cs" />
+    <Compile Include="PlayerShutDownPacket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StartGamePacket.cs" />
   </ItemGroup>

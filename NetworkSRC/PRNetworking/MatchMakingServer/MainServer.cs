@@ -85,7 +85,7 @@ namespace MatchmakingServer
                                 case BasePacket.PacketType.DisplayLobby:
                                     DisplayLobbiesPacket dlp = (DisplayLobbiesPacket)new DisplayLobbiesPacket().DeSerialize(recievedBuffer);
                                     //Console.WriteLine("Recieved Request To Show Lobbies");
-                                    //string lobbyname = string.Join(",", LobbyNames);
+                                    string lobbyname = string.Join(",", LobbyNames);
                                     ClientSockets[i].Socket.Send(new LobbyNamesPacket(LobbyNames, ClientSockets[i].Player).Serialize());
                                     Console.WriteLine("Showing Lobbies");
                                     break;
@@ -118,6 +118,12 @@ namespace MatchmakingServer
                                             }
                                         }
                                     }
+                                    break;
+                                    
+                                case BasePacket.PacketType.PlayerShutDown:
+                                    PlayerShutDownPacket psp = (PlayerShutDownPacket)new PlayerShutDownPacket().DeSerialize(recievedBuffer);
+                                    ClientSockets.Remove(ClientSockets[i]);
+                                    Console.WriteLine("A Player Has Closed The Game");
                                     break;
                             }
                         }
@@ -167,6 +173,21 @@ namespace MatchmakingServer
                                         //ClientSockets.Remove(ClientSockets[e]);
                                     }
                                 }
+                                break;
+                            
+                            case BasePacket.PacketType.LeaveLobby:
+                                LeaveRequestPacket lrp = (LeaveRequestPacket)new LeaveRequestPacket().DeSerialize(recievedBuffer);
+                                for (int e = 0; e < LobbiesList.Count; e++)
+                                {
+                                    if(LobbiesList[e].Name == lrp.Name)
+                                    {
+                                        Console.WriteLine("Removed Lobby " + LobbiesList[e].Name);
+                                        LobbyNames.Remove(LobbiesList[e].Name);
+                                        LobbyCodes.Remove(LobbiesList[e].Roomcode);
+                                        LobbiesList.Remove(LobbiesList[e]);
+                                    }
+                                }
+                                
                                 break;
                                 // check for lobbypackey(close)
                         }

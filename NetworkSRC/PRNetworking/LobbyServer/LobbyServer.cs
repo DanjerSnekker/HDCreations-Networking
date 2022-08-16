@@ -46,15 +46,15 @@ namespace LobbyServer
 
             //there are two while loops becuz something is breaking the second one
             //first one is working but its connecting an unknown client in the beginning!?
+            bool someoneConnected = false;
 
             while (true)
             {
-                //Console.WriteLine("spam this tests!");
                 try
                 {
                     clients.Add(new Client(listeningSocket.Accept()));
                     Console.WriteLine("A Client Joined Lobby " + name);
-                    // MainSocket.Send(new DisplayLobbiesPacket().Serialize()); // this if for tyesting
+                    someoneConnected = true;
                 }
                 catch (SocketException ex)
                 {
@@ -62,11 +62,15 @@ namespace LobbyServer
                     if (ex.SocketErrorCode != SocketError.WouldBlock)
                         Console.WriteLine(ex);
                 }
-                if(clients.Count > 2) // if a third person connects..then kick them here cuz lobby would be full by 2 people..
+                if (clients.Count > 2) // if a third person connects..then kick them here cuz lobby would be full by 2 people..
                 {
                     clients[clients.Count - 1].Socket.Send(new KickRequestPacket("Lobby Is Full", clients[2].Player).Serialize());
                     clients.RemoveAt(clients.Count - 1);
                     Console.WriteLine(" Kicking Third Person");
+                }
+                if (someoneConnected && clients.Count == 0)
+                {
+                    MainSocket.Send(new LeaveRequestPacket(name, false, null).Serialize());
                 }
 
                 //Console.WriteLine("Spam This Test");
@@ -102,12 +106,14 @@ namespace LobbyServer
                                     Console.WriteLine("Recieved Kick Request + ");
                                     for (int e = 0; e < clients.Count; e++)
                                     {
+                                        Console.WriteLine(clients[e]);
                                         if (e != i)
                                         {
                                             clients[e].Socket.Send(recievedBuffer);
                                             clients.Remove(clients[e]);
                                         }
                                     }
+
                                     break;
                                 //Check for Start
                                 case BasePacket.PacketType.StartGame:
@@ -118,8 +124,40 @@ namespace LobbyServer
                                         clients[e].Socket.Send(recievedBuffer);             
                                     }
                                     break;
+                                
+                                    //Check for Leave Request (If Host Close Lobby)
+                                case BasePacket.PacketType.LeaveLobby:
+                                    LeaveRequestPacket lrp = (LeaveRequestPacket)new LeaveRequestPacket().DeSerialize(recievedBuffer);
+                                    if (lrp.isHost)
+                                    {
+                                        for (int e = 0; e < clients.Count; e++)
+                                        {
+                                            Console.WriteLine(clients.Count);
+                                            clients[e].Socket.Send(new KickRequestPacket("Lobby Disbanded", clients[e].Player).Serialize());
+                                            Console.WriteLine("removed " + clients[e]);
+                                            clients.Remove(clients[e]);
+                                            e--;
+                                        }
+                                        if (clients.Count == 0)
+                                        {
+                                            MainSocket.Send(recievedBuffer);
+                                            Console.WriteLine("removed everyone");
+                                        }
+                                    }
+                                    else
+                                    {
+                                        clients[i].Socket.Send(new KickRequestPacket("", clients[i].Player).Serialize());
+                                        clients.Remove(clients[i]);
+                                        Console.WriteLine("removing the only person who left...");
+                                    }
+                                    
+                                    break;
+                                //check if anyone closed the game or ALT-F4
+                                case BasePacket.PacketType.PlayerShutDown:
+                                    PlayerShutDownPacket psp = (PlayerShutDownPacket)new PlayerShutDownPacket().DeSerialize(recievedBuffer);
+                                    clients.Remove(clients[i]);
+                                    break;
                             }
-                            //Check for Leave Request (If Host Close Lobby)
                             
                             for (int e = 0; e < clients.Count; e++)
                             {
