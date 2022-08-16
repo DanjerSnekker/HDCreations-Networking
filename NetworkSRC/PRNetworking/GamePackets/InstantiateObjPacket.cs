@@ -9,29 +9,29 @@ namespace GamePackets
 {
     public class InstantiateObjPacket : GameBasePacket
     {
-        public string OwnerID { get; set; }
-
-        public string prefabName { get; set; }
+        public string ownershipID;
+        public string prefabName;
 
         public InstantiateObjPacket()
         {
             prefabName = "";
+            ownershipID = "";
         }
 
-        public InstantiateObjPacket(string prefabName, string ownerID, string objID) :
+        public InstantiateObjPacket(string prefabName, string ownerID, string objID) : //Enter either "Player1" OR "Player2" in objID.
             base(PacketType.Instantiate, objID)
         {
-            
             this.prefabName = prefabName;
-            this.OwnerID = ownerID;
+            ownershipID = ownerID;
         }
 
         public override byte[] Serialize()
         {
             base.Serialize();
 
-            bw.Write(OwnerID);
             bw.Write(prefabName);
+            bw.Write(ownershipID);
+
             return ms.ToArray();
         }
 
@@ -39,8 +39,9 @@ namespace GamePackets
         {
             base.DeSerialize(buffer);
 
-            OwnerID = br.ReadString();
             prefabName = br.ReadString();
+            ownershipID = br.ReadString();
+
             return this;
         }
     }

@@ -53,7 +53,7 @@
     <Compile Include="RigidbodyPacket.cs" />
     <Compile Include="ObjEffectPacket.cs" />
     <Compile Include="SizeMassPacket.cs" />
-    <Compile Include="SpawnPosPacket.cs" />
+    <Compile Include="ClientReadyPacket.cs" />
     <Compile Include="TestPacket.cs" />
     <Compile Include="TriggerPacket.cs" />
   </ItemGroup>
