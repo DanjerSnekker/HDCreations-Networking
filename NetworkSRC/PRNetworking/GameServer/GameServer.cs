@@ -60,18 +60,18 @@ namespace GameServer
                                     ClientReadyPacket crPack = (ClientReadyPacket)new ClientReadyPacket().DeSerialize(receivedBuffer);
                                     
                                     clientConnectionStatus[i] = crPack.isReady;
-                                    Console.WriteLine($"Client{i}'s connection status: {clientConnectionStatus[i]}");
+                                  //  Console.WriteLine($"Client{i}'s connection status: {clientConnectionStatus[i]}");
 
                                     if (clientConnectionStatus.Count >= 2)
                                     {
                                         if (clientConnectionStatus.All(x => x))
                                         {
-                                            Console.WriteLine("All clients have connected");
+                                            //Console.WriteLine("All clients have connected");
 
                                             for (int j = 0; j < clients.Count; j++)
                                             {
                                                 clients[j].Socket.Send(new PlayerInfoPacket($"Player{j + 1}").Serialize());
-                                                Console.WriteLine($"Sending Player Designation to Player {j + 1}");
+                                              //  Console.WriteLine($"Sending Player Designation to Player {j + 1}");
                                             }
                                         }
                                     }
@@ -79,7 +79,7 @@ namespace GameServer
                                 
                                 case GameBasePacket.PacketType.Instantiate:
                                     InstantiateObjPacket iPack = (InstantiateObjPacket)new InstantiateObjPacket().DeSerialize(receivedBuffer);
-                                    Console.WriteLine($"{iPack.Type} from {iPack.objID} is being sent to the other client");
+                                    //Console.WriteLine($"{iPack.Type} from {iPack.objID} is being sent to the other client");
                                     if (iPack.objID.Equals("Player1"))
                                     {
                                         clients[1].Socket.Send(receivedBuffer);
@@ -96,7 +96,7 @@ namespace GameServer
                                 if (i == j)
                                     continue;
 
-                                Console.WriteLine($"{pb.Type} packet by {pb.objID}, has been sent to the others");
+                                //Console.WriteLine($"{pb.Type} packet by {pb.objID}, has been sent to the others");
                                 clients[j].Socket.Send(receivedBuffer);
 
                                 //Debug line for the Test Packet
