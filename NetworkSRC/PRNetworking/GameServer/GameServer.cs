@@ -8,14 +8,27 @@ using System.Net;
 using PlayTimePackets;
 using GamePackets;
 using UnityEngine;
-
+using System.Collections;
+using System.Threading;
 
 namespace GameServer
 {
     internal class GameServer
     {
+        static int timer = 10;
+
+        /*public static void SetBool(bool boolean)
+        {
+            sendInfoPacket = boolean;
+        }*/
+
         static void Main(string[] args)
         {
+            bool sendInfoPacket = false;
+            bool runDelay = false;
+
+            //SetBool(false);
+
             Socket listeningSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             listeningSocket.Bind(new IPEndPoint(IPAddress.Any, 3000));
             listeningSocket.Listen(10);
@@ -26,6 +39,7 @@ namespace GameServer
             List<Client> clients = new List<Client>();
             List<bool> clientConnectionStatus = new List<bool>();
 
+            //byte[] instantiationBuffer = new byte[];
             //Player serverPlayer = new Player("1");
 
             while (true)
@@ -42,6 +56,26 @@ namespace GameServer
                         Console.WriteLine(sE);
                 }
 
+                /*if (clientConnectionStatus.Count >= 2)
+                {
+                    if (clientConnectionStatus.All(x => x))
+                    {
+                        if (!runDelay)
+                        {
+                            //Thread instantiationDelay = new Thread(DelayInstantiation.InstantiationDelay);
+                            //instantiationDelay.Start();
+                            Console.WriteLine("Begining Delay");
+                            Thread.Sleep(timer * 1000);
+                            Console.WriteLine("Delay Ended");
+
+                            sendInfoPacket = true;
+                            runDelay = true;
+
+                            Console.WriteLine("Running Instantiation");
+                        }
+                    }
+                }*/
+
                 for (int i = clients.Count - 1; i >= 0; i--)
                 {
                     try
@@ -57,30 +91,59 @@ namespace GameServer
                             {
                                 case GameBasePacket.PacketType.ClientReady:
                                     ClientReadyPacket crPack = (ClientReadyPacket)new ClientReadyPacket().DeSerialize(receivedBuffer);
-                                    
+
                                     clientConnectionStatus[i] = crPack.isReady;
-                                  //  Console.WriteLine($"Client{i}'s connection status: {clientConnectionStatus[i]}");
+                                    Console.WriteLine($"Client{i}'s connection status: {clientConnectionStatus[i]}");
 
                                     if (clientConnectionStatus.Count >= 2)
                                     {
                                         if (clientConnectionStatus.All(x => x))
                                         {
-                                            //Console.WriteLine("All clients have connected");
+                                            Console.WriteLine("All clients have connected");
 
-                                            for (int j = 0; j < clients.Count; j++)
+                                            if (!runDelay)
                                             {
-                                                clients[j].Socket.Send(new PlayerInfoPacket($"Player{j + 1}").Serialize());
-                                              //  Console.WriteLine($"Sending Player Designation to Player {j + 1}");
+                                                //Thread instantiationDelay = new Thread(DelayInstantiation.InstantiationDelay);
+                                                //instantiationDelay.Start();
+                                                Console.WriteLine("Begining Delay");
+                                                Thread.Sleep(timer * 1000);
+                                                Console.WriteLine("Delay Ended");
+
+                                                sendInfoPacket = true;
+                                                runDelay = true;
+
+                                                Console.WriteLine("Running Instantiation");
+                                            }
+
+                                            if (sendInfoPacket)
+                                            {
+                                                Console.WriteLine("Sending PlayerInfo Packets");
+                                                for (int j = 0; j < clients.Count; j++)
+                                                {
+                                                    clients[j].Socket.Send(new PlayerInfoPacket($"Player{j + 1}").Serialize());
+                                                    Console.WriteLine($"Sending Player Designation to Player {j + 1}");
+                                                }
                                             }
                                         }
                                     }
                                     break;
-                                
+
                                 case GameBasePacket.PacketType.Instantiate:
                                     InstantiateObjPacket iPack = (InstantiateObjPacket)new InstantiateObjPacket().DeSerialize(receivedBuffer);
                                     //Console.WriteLine($"{iPack.Type} from {iPack.objID} is being sent to the other client");
                                     if (iPack.objID.Equals("Player1"))
                                     {
+                                        /*if (!sendInstantiatePacket)
+                                        {
+                                            prefabname = iPack.prefabName;
+                                            ownerID = iPack.ownershipID;
+                                            objectID = iPack.objID;
+                                        }
+                                        else if (sendInstantiatePacket)
+                                        {
+                                            clients[1].Socket.Send(new InstantiateObjPacket(prefabname, ownerID, objectID).Serialize());
+                                        }*/
+
                                         clients[1].Socket.Send(receivedBuffer);
                                     }
                                     else if (iPack.objID.Equals("Player2"))
@@ -112,5 +175,31 @@ namespace GameServer
 
             Console.ReadKey();
         }
+
+
     }
+
+    /*class DelayInstantiation
+    {
+        static float timer = 10f;
+
+        public DelayInstantiation()
+        {
+
+        }
+
+        public static void InstantiationDelay()
+        {
+            Console.WriteLine("Delaying Instantiation");
+
+            for (int i = 0; i < timer; i++)
+            {
+                Console.WriteLine(i);
+                Thread.Sleep(1000);
+            }
+
+            Console.WriteLine("Running Instantiation");
+            GameServer.SetBool(true);
+        }
+    }*/
 }
