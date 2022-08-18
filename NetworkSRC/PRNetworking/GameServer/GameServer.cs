@@ -21,7 +21,6 @@ namespace GameServer
             listeningSocket.Listen(10);
             listeningSocket.Blocking = false;
 
-
             Console.WriteLine("We are currently expecting a few guests..");
 
             List<Client> clients = new List<Client>();

@@ -28,6 +28,7 @@ namespace GamePackets
 
             PickUp,
             SizeMass,
+            Bounciness,
 
             ClientReady,
             PlayerInfo,
