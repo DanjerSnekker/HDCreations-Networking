@@ -20,7 +20,6 @@ C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\GameServer\bin\Debu
 C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\GameServer\bin\Debug\PlayTimePackets.dll
 C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\GameServer\bin\Debug\GamePackets.pdb
 C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\GameServer\bin\Debug\PlayTimePackets.pdb
-C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\GameServer\bin\Debug\UnityEngine.xml
 C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\GameServer\obj\Debug\GameServer.csproj.AssemblyReference.cache
 C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\GameServer\obj\Debug\GameServer.csproj.SuggestedBindingRedirects.cache
 C:\Users\user\HDCreations-Networking\NetworkSRC\PRNetworking\GameServer\obj\Debug\GameServer.csproj.CoreCompileInputs.cache

@@ -15,7 +15,7 @@ namespace GameServer
 {
     internal class GameServer
     {
-        static int timer = 10;
+        static int timer = 30;
 
         /*public static void SetBool(bool boolean)
         {
@@ -24,13 +24,18 @@ namespace GameServer
 
         static void Main(string[] args)
         {
+            int port = 4000;
+            if (args.Length == 1)
+            {
+                port = Int32.Parse(args[0]);
+            }
             bool sendInfoPacket = false;
             bool runDelay = false;
 
             //SetBool(false);
 
             Socket listeningSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            listeningSocket.Bind(new IPEndPoint(IPAddress.Any, 3000));
+            listeningSocket.Bind(new IPEndPoint(IPAddress.Any, port));
             listeningSocket.Listen(10);
             listeningSocket.Blocking = false;
 
@@ -157,10 +162,9 @@ namespace GameServer
                             {
                                 if (i == j)
                                     continue;
-
                                 //Console.WriteLine($"{pb.Type} packet by {pb.objID}, has been sent to the others");
                                 clients[j].Socket.Send(receivedBuffer);
-
+                                Console.WriteLine(receivedBuffer);
                                 //Debug line for the Test Packet
                                 /*TestPacket testPacket = (TestPacket)new TestPacket().DeSerialize(receivedBuffer);
                                 Console.WriteLine($"{pb.Type} packet of {pb.objID} conaining {testPacket.objPos}, has been sent to the others");*/

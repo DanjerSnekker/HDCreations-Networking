@@ -10,15 +10,18 @@ namespace GamePackets
     public class TriggerPacket : GameBasePacket
     {
         public bool triggerActive;
+        public bool PressedActive;
 
         public TriggerPacket()
         {
+            PressedActive = false;
             triggerActive = false;
         }
 
-        public TriggerPacket(string objID, bool activeTrigger) :
+        public TriggerPacket(string objID, bool pressedactive, bool activeTrigger) :
             base(PacketType.Trigger, objID)
         {
+            PressedActive = pressedactive;
             triggerActive = activeTrigger;
         }
 
@@ -26,6 +29,7 @@ namespace GamePackets
         {
             base.Serialize();
 
+            bw.Write(PressedActive);
             bw.Write(triggerActive);
 
             return ms.ToArray();
@@ -35,6 +39,7 @@ namespace GamePackets
         {
             base.DeSerialize(buffer);
 
+            PressedActive = br.ReadBoolean();
             triggerActive = br.ReadBoolean();
 
             return this;

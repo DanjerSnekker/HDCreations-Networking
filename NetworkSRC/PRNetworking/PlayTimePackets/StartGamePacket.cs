@@ -8,28 +8,28 @@ namespace PlayTimePackets
 {
     public class StartGamePacket : BasePacket
     {
-        public string Start;
+        public int Gameport;
 
         public StartGamePacket()
         {
-            Start = "";
+            Gameport = 0;
         }
-        public StartGamePacket(string start, Player player) :
+        public StartGamePacket(int start, Player player) :
             base(PacketType.StartGame, player)
         {
-            Start = start;
+            Gameport = start;
         }
 
         public override byte[] Serialize()
         {
             base.Serialize();
-            bw.Write(Start);
+            bw.Write(Gameport);
             return ms.ToArray();
         }
         public override BasePacket DeSerialize(byte[] buffer)
         {
             base.DeSerialize(buffer);
-            Start = br.ReadString();
+            Gameport = br.ReadInt32();
             return this;
         }
     }

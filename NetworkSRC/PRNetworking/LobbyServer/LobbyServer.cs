@@ -2,6 +2,7 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Diagnostics;
 using PlayTimePackets;
 using MatchmakingServer;
 
@@ -9,6 +10,8 @@ namespace LobbyServer
 {
     public class LobbyServer
     {
+        static int portOffset = 100;
+        static int currentport;
         static void Main(string[] args)
         {
             string name = "THE KILLERS";
@@ -119,9 +122,10 @@ namespace LobbyServer
                                 case BasePacket.PacketType.StartGame:
                                     StartGamePacket sgp = (StartGamePacket)new StartGamePacket().DeSerialize(recievedBuffer);
                                     Console.WriteLine("Starting Game");
+                                    CreateGame();
                                     for (int e = 0; e < clients.Count; e++)
-                                    { 
-                                        clients[e].Socket.Send(recievedBuffer);             
+                                    {
+                                        clients[e].Socket.Send(new StartGamePacket(currentport, clients[e].Player).Serialize());             
                                     }
                                     break;
                                 
@@ -172,30 +176,19 @@ namespace LobbyServer
                             if (ex.SocketErrorCode != SocketError.WouldBlock) throw;
                         }
                     }
-                    // server packet loop
-                    /*try
-                    {
-                        byte[] recievedBuffer = new byte[MainSocket.Available];
-                        MainSocket.Receive(recievedBuffer);
-                        //Look for packet from main
-                        BasePacket pb = new BasePacket().DeSerialize(recievedBuffer);
-                        for (int e = 0; e < clients.Count; e++)
-                        {
-                            if (e != i)
-                            {
-                                clients[e].Socket.Send(recievedBuffer);
-                            }
-                        }
-
-                    }
-                    catch (SocketException ex)
-                    {
-                        if (ex.SocketErrorCode != SocketError.WouldBlock) Console.WriteLine(ex);//throw;
-                    }*/
                 }
               }
         }
 
+        static void CreateGame()
+        {
+            Process game = new Process();
+            game.StartInfo.FileName = "GameServer.exe";
+            game.StartInfo.Arguments = $"{3300 + portOffset}";
+            currentport = 3300 + portOffset;
+            game.Start();
+            portOffset++;
+        }
         static int RandomRoomCode(int min, int max)
         {
             Random random = new Random();
