@@ -11,39 +11,33 @@ namespace GamePackets
     {
         public Vector3 velocity;
 
-        public float mass;
+        public float Mass;
 
-        public bool gravityActive;
+        public bool GravityActive;
         public bool isKinematic;
 
         public RigidbodyPacket()
         {
-            velocity = Vector3.zero;
-            mass = 1f; 
-            gravityActive = true;
+            Mass = 1f; 
+            GravityActive = true;
             isKinematic = false;
         }
 
-        public RigidbodyPacket(Rigidbody rigidbody, string objID) :
+        public RigidbodyPacket(float mass, bool gravity, bool kinematic, string objID) :
             base(PacketType.Rigidbody, objID)
         {
-            mass = rigidbody.mass;
-            gravityActive = rigidbody.useGravity;
-             isKinematic = rigidbody.isKinematic;
-
-            velocity = rigidbody.velocity;
+            Mass = mass;
+            GravityActive = gravity;
+            isKinematic = kinematic;
         }
 
         public override byte[] Serialize()
         {
             base.Serialize();
 
-            bw.Write(mass);
-            bw.Write(gravityActive);
+            bw.Write(Mass);
+            bw.Write(GravityActive);
             bw.Write(isKinematic);
-            bw.Write(velocity.x);
-            bw.Write(velocity.y);
-            bw.Write(velocity.z);
 
             return ms.ToArray();
         }
@@ -52,11 +46,10 @@ namespace GamePackets
         {
             base.DeSerialize(buffer);
 
-            mass = br.ReadInt32();
-            gravityActive = br.ReadBoolean();
+            Mass = br.ReadInt32();
+            GravityActive = br.ReadBoolean();
             isKinematic = br.ReadBoolean();
-            velocity = new Vector3(br.ReadSingle(), br.ReadSingle(), br.ReadSingle());
-
+            
             return this;
         }
     }

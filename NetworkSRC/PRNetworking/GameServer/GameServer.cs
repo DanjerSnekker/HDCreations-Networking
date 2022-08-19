@@ -162,9 +162,9 @@ namespace GameServer
                             {
                                 if (i == j)
                                     continue;
-                                //Console.WriteLine($"{pb.Type} packet by {pb.objID}, has been sent to the others");
+                                Console.WriteLine($"{pb.Type} packet by {pb.objID}, has been sent to the others");
                                 clients[j].Socket.Send(receivedBuffer);
-                                Console.WriteLine(receivedBuffer);
+                                //Console.WriteLine(pb.Type);
                                 //Debug line for the Test Packet
                                 /*TestPacket testPacket = (TestPacket)new TestPacket().DeSerialize(receivedBuffer);
                                 Console.WriteLine($"{pb.Type} packet of {pb.objID} conaining {testPacket.objPos}, has been sent to the others");*/
