@@ -33,6 +33,7 @@ namespace GamePackets
             ClientReady,
             PlayerInfo,
             PlayerController,
+            PositionRotation,
         }
         public PacketType Type { get; private set; }
 
