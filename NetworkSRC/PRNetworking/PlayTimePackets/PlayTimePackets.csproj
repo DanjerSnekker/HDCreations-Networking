@@ -58,6 +58,7 @@
     <Compile Include="PlayerShutDownPacket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StartGamePacket.cs" />
+    <Compile Include="UsernamePacket.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

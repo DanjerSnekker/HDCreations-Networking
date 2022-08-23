@@ -19,7 +19,7 @@ namespace LobbyServer
             int roomCode = RandomRoomCode(1000, 9999);
             Guid hostID = Guid.Empty;
             Player HostPlayer = new Player("host", true);
-
+            Console.WriteLine("helloooo1/1/?!?!");
             if (args.Length == 4)
             {
                 name = args[0];
@@ -29,7 +29,9 @@ namespace LobbyServer
             }
 
             HostPlayer = new Player("Host", hostID);
-            //Console.WriteLine("lobby name is " + name + " with port number: " + port + " Host ID: " + hostID + " Roomcode: " + roomCode);
+            string hostName = "";
+            string PartnerName = "";
+            int nameInt = 0;
 
             Socket MainSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             MainSocket.Connect(new IPEndPoint(IPAddress.Parse("127.0.0.1"), 3300));
@@ -132,6 +134,7 @@ namespace LobbyServer
                                     //Check for Leave Request (If Host Close Lobby)
                                 case BasePacket.PacketType.LeaveLobby:
                                     LeaveRequestPacket lrp = (LeaveRequestPacket)new LeaveRequestPacket().DeSerialize(recievedBuffer);
+                                    Console.WriteLine(lrp.isHost);
                                     if (lrp.isHost)
                                     {
                                         for (int e = 0; e < clients.Count; e++)
@@ -148,13 +151,35 @@ namespace LobbyServer
                                             Console.WriteLine("removed everyone");
                                         }
                                     }
-                                    else
+                                    else if(!lrp.isHost)
                                     {
                                         clients[i].Socket.Send(new KickRequestPacket("", clients[i].Player).Serialize());
                                         clients.Remove(clients[i]);
                                         Console.WriteLine("removing the only person who left...");
                                     }
-                                    
+                                    break;
+
+                                case BasePacket.PacketType.Usernames:
+                                    UsernamePacket unp = (UsernamePacket) new UsernamePacket().DeSerialize(recievedBuffer);
+                                    Console.WriteLine("Received Usernames");
+                                    if(nameInt == 0)
+                                    {
+                                        hostName = unp.HostName;
+                                        nameInt++;
+                                        clients[i].Socket.Send(new UsernamePacket(hostName, "Partner", clients[i].Player).Serialize());
+                                        Console.WriteLine("Assigned Host Name: " + hostName);
+                                    }
+                                    else if(nameInt > 0)
+                                    {
+                                        PartnerName = unp.PartnerName;
+                                        Console.WriteLine("Assigned Partner Name: " + PartnerName);
+                                        for (int e = 0; e < clients.Count; e++)
+                                        {
+                                            clients[e].Socket.Send(new UsernamePacket(hostName, PartnerName, clients[e].Player).Serialize());
+                                            Console.WriteLine("Sent Both Names To Clients: " + hostName + " and " + PartnerName);
+                                        }
+                                    }
+
                                     break;
                                 //check if anyone closed the game or ALT-F4
                                 case BasePacket.PacketType.PlayerShutDown:
