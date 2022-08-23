@@ -10,16 +10,27 @@ namespace GamePackets
     public class PickUpPacket : GameBasePacket
     {
         public bool Holding;
+        public string objectOwnerID;
 
         public PickUpPacket()
         {
             Holding = true;
+            objectOwnerID = "";
+
         }
 
         public PickUpPacket(bool holding, string objID) :
             base(PacketType.PickUp, objID)
         {
             this.Holding = holding;
+            objectOwnerID = "";
+        }
+
+        public PickUpPacket(bool holding, string objOwnerId, string objID) :
+            base(PacketType.PickUp, objID)
+        {
+            this.Holding = holding;
+            objectOwnerID = objOwnerId;
         }
 
         public override byte[] Serialize()
@@ -27,6 +38,7 @@ namespace GamePackets
             base.Serialize();
 
             bw.Write(Holding);
+            bw.Write(objectOwnerID);
 
             return ms.ToArray();
         }
@@ -36,6 +48,7 @@ namespace GamePackets
             base.DeSerialize(buffer);
 
             Holding = br.ReadBoolean();
+            objectOwnerID = br.ReadString();
 
             return this;
         }
