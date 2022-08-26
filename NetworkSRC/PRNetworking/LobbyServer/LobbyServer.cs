@@ -10,7 +10,7 @@ namespace LobbyServer
 {
     public class LobbyServer
     {
-        static int portOffset = 100;
+        static int portOffset = 11000;
         static int currentport;
         static void Main(string[] args)
         {
@@ -19,7 +19,7 @@ namespace LobbyServer
             int roomCode = RandomRoomCode(1000, 9999);
             Guid hostID = Guid.Empty;
             Player HostPlayer = new Player("host", true);
-
+           // Console.WriteLine("helloooo1/1/?!?!");
             if (args.Length == 4)
             {
                 name = args[0];
@@ -27,9 +27,12 @@ namespace LobbyServer
                 hostID = new Guid(args[2]);
                 roomCode = Int32.Parse(args[3]);
             }
+            currentport = port;
 
             HostPlayer = new Player("Host", hostID);
-            //Console.WriteLine("lobby name is " + name + " with port number: " + port + " Host ID: " + hostID + " Roomcode: " + roomCode);
+            string hostName = "";
+            string PartnerName = "";
+            int nameInt = 0;
 
             Socket MainSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             MainSocket.Connect(new IPEndPoint(IPAddress.Parse("127.0.0.1"), 3300));
@@ -122,16 +125,20 @@ namespace LobbyServer
                                 case BasePacket.PacketType.StartGame:
                                     StartGamePacket sgp = (StartGamePacket)new StartGamePacket().DeSerialize(recievedBuffer);
                                     Console.WriteLine("Starting Game");
-                                    CreateGame();
-                                    for (int e = 0; e < clients.Count; e++)
+                                    if (clients.Count == 2)
                                     {
-                                        clients[e].Socket.Send(new StartGamePacket(currentport, clients[e].Player).Serialize());             
+                                        CreateGame();
+                                        for (int e = 0; e < clients.Count; e++)
+                                        {
+                                            clients[e].Socket.Send(new StartGamePacket(currentport + portOffset, clients[e].Player).Serialize());
+                                        }
                                     }
+                                    else { Console.WriteLine("Not Enough Players"); };
                                     break;
-                                
                                     //Check for Leave Request (If Host Close Lobby)
                                 case BasePacket.PacketType.LeaveLobby:
                                     LeaveRequestPacket lrp = (LeaveRequestPacket)new LeaveRequestPacket().DeSerialize(recievedBuffer);
+                                    Console.WriteLine(lrp.isHost);
                                     if (lrp.isHost)
                                     {
                                         for (int e = 0; e < clients.Count; e++)
@@ -148,13 +155,35 @@ namespace LobbyServer
                                             Console.WriteLine("removed everyone");
                                         }
                                     }
-                                    else
+                                    else if(!lrp.isHost)
                                     {
                                         clients[i].Socket.Send(new KickRequestPacket("", clients[i].Player).Serialize());
                                         clients.Remove(clients[i]);
                                         Console.WriteLine("removing the only person who left...");
                                     }
-                                    
+                                    break;
+
+                                case BasePacket.PacketType.Usernames:
+                                    UsernamePacket unp = (UsernamePacket) new UsernamePacket().DeSerialize(recievedBuffer);
+                                    Console.WriteLine("Received Usernames");
+                                    if(nameInt == 0)
+                                    {
+                                        hostName = unp.HostName;
+                                        nameInt++;
+                                        clients[i].Socket.Send(new UsernamePacket(hostName, "Partner", clients[i].Player).Serialize());
+                                        Console.WriteLine("Assigned Host Name: " + hostName);
+                                    }
+                                    else if(nameInt > 0)
+                                    {
+                                        PartnerName = unp.PartnerName;
+                                        Console.WriteLine("Assigned Partner Name: " + PartnerName);
+                                        for (int e = 0; e < clients.Count; e++)
+                                        {
+                                            clients[e].Socket.Send(new UsernamePacket(hostName, PartnerName, clients[e].Player).Serialize());
+                                            Console.WriteLine("Sent Both Names To Clients: " + hostName + " and " + PartnerName);
+                                        }
+                                    }
+
                                     break;
                                 //check if anyone closed the game or ALT-F4
                                 case BasePacket.PacketType.PlayerShutDown:
@@ -184,10 +213,10 @@ namespace LobbyServer
         {
             Process game = new Process();
             game.StartInfo.FileName = "GameServer.exe";
-            game.StartInfo.Arguments = $"{3300 + portOffset}";
-            currentport = 3300 + portOffset;
+            game.StartInfo.Arguments = $"{currentport + portOffset}";
+            //currentport = 3300 + portOffset;
             game.Start();
-            portOffset++;
+            //portOffset++;
         }
         static int RandomRoomCode(int min, int max)
         {

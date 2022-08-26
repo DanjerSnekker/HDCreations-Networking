@@ -31,6 +31,7 @@ namespace PlayTimePackets
             StartGame,
             LeaveLobby,
             PlayerShutDown,
+            Usernames,
 
             Rigidbody,
             Instantiate,
