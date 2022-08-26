@@ -29,6 +29,7 @@ namespace GameServer
             {
                 port = Int32.Parse(args[0]);
             }
+            Console.WriteLine(port);
             bool sendInfoPacket = false;
             bool runDelay = false;
 
@@ -171,8 +172,12 @@ namespace GameServer
                             }
                         }
                     }
-                    catch (SocketException ex)
+                    catch (Exception ex)
                     {
+                        if (ex is SocketException)
+                            throw;//if ((sockex)ex.SocketErrorCode != SocketError.WouldBlock) throw;
+                        else if (ex is System.IO.EndOfStreamException)
+                            throw;
                     }
                 }
             }

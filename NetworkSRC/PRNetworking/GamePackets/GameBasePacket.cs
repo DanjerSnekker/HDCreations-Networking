@@ -63,11 +63,21 @@ namespace GamePackets
         }
         public virtual GameBasePacket DeSerialize(byte[] buffer)
         {
-            msr = new MemoryStream(buffer);
-            br = new BinaryReader(msr);
+            try {
+                msr = new MemoryStream(buffer);
+                br = new BinaryReader(msr);
 
-            Type = (PacketType)br.ReadInt32();
-            objID = br.ReadString();
+                Type = (PacketType)br.ReadInt32();
+                objID = br.ReadString();
+
+            }
+            catch(Exception e) {
+                Console.WriteLine(e);
+                for (int i = 0; i < buffer.Length; i++)
+                {
+                    Console.WriteLine(buffer[i]);
+                }
+            }
             return this;
         }
     }

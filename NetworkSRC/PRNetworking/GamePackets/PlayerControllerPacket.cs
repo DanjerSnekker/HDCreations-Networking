@@ -52,13 +52,13 @@ namespace GamePackets
             bw.Write(position.y);
             bw.Write(position.z);
 
-            bw.Write(movement.x);
+            /*bw.Write(movement.x);
             bw.Write(movement.y);
             bw.Write(movement.z);
 
             bw.Write(velocity.x);
             bw.Write(velocity.y);
-            bw.Write(velocity.z);
+            bw.Write(velocity.z);*/
 
             bw.Write(ownershipID);
 
@@ -70,8 +70,8 @@ namespace GamePackets
             base.DeSerialize(buffer);
 
             position = new Vector3(br.ReadSingle(), br.ReadSingle(), br.ReadSingle());
-            movement = new Vector3(br.ReadSingle(), br.ReadSingle(), br.ReadSingle());
-            velocity = new Vector3(br.ReadSingle(), br.ReadSingle(), br.ReadSingle());
+            //movement = new Vector3(br.ReadSingle(), br.ReadSingle(), br.ReadSingle());
+            //velocity = new Vector3(br.ReadSingle(), br.ReadSingle(), br.ReadSingle());
 
             ownershipID = br.ReadString();
 

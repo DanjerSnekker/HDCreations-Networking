@@ -10,7 +10,7 @@ namespace LobbyServer
 {
     public class LobbyServer
     {
-        static int portOffset = 100;
+        static int portOffset = 11000;
         static int currentport;
         static void Main(string[] args)
         {
@@ -19,7 +19,7 @@ namespace LobbyServer
             int roomCode = RandomRoomCode(1000, 9999);
             Guid hostID = Guid.Empty;
             Player HostPlayer = new Player("host", true);
-            Console.WriteLine("helloooo1/1/?!?!");
+           // Console.WriteLine("helloooo1/1/?!?!");
             if (args.Length == 4)
             {
                 name = args[0];
@@ -27,6 +27,7 @@ namespace LobbyServer
                 hostID = new Guid(args[2]);
                 roomCode = Int32.Parse(args[3]);
             }
+            currentport = port;
 
             HostPlayer = new Player("Host", hostID);
             string hostName = "";
@@ -124,13 +125,16 @@ namespace LobbyServer
                                 case BasePacket.PacketType.StartGame:
                                     StartGamePacket sgp = (StartGamePacket)new StartGamePacket().DeSerialize(recievedBuffer);
                                     Console.WriteLine("Starting Game");
-                                    CreateGame();
-                                    for (int e = 0; e < clients.Count; e++)
+                                    if (clients.Count == 2)
                                     {
-                                        clients[e].Socket.Send(new StartGamePacket(currentport, clients[e].Player).Serialize());             
+                                        CreateGame();
+                                        for (int e = 0; e < clients.Count; e++)
+                                        {
+                                            clients[e].Socket.Send(new StartGamePacket(currentport + portOffset, clients[e].Player).Serialize());
+                                        }
                                     }
+                                    else { Console.WriteLine("Not Enough Players"); };
                                     break;
-                                
                                     //Check for Leave Request (If Host Close Lobby)
                                 case BasePacket.PacketType.LeaveLobby:
                                     LeaveRequestPacket lrp = (LeaveRequestPacket)new LeaveRequestPacket().DeSerialize(recievedBuffer);
@@ -209,10 +213,10 @@ namespace LobbyServer
         {
             Process game = new Process();
             game.StartInfo.FileName = "GameServer.exe";
-            game.StartInfo.Arguments = $"{3300 + portOffset}";
-            currentport = 3300 + portOffset;
+            game.StartInfo.Arguments = $"{currentport + portOffset}";
+            //currentport = 3300 + portOffset;
             game.Start();
-            portOffset++;
+            //portOffset++;
         }
         static int RandomRoomCode(int min, int max)
         {
